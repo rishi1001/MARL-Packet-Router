@@ -8,6 +8,7 @@ class BaseStation():
         pass 
 
     def get_reward(self):
+        ## based on ttl of the packet
         return self.reward
 
 
