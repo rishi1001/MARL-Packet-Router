@@ -18,4 +18,8 @@ class Iot_Nodes():
     
     def find_neighbour(self):
         pass
+        # TODO
         ## doubt?? 
+
+    def isUAV(self):
+        return false
