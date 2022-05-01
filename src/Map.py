@@ -1,5 +1,7 @@
+import imp
+from pkgutil import ImpImporter
 import random
-
+import file
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell
 class generate_map():
@@ -22,3 +24,9 @@ class generate_map():
                 else:
                     map[i][j]='I'
         return map  
+    
+    def dump_map(self):
+        map=self.generate()
+        with open("./config/map.txt", 'w') as file:
+            file.writelines('\t'.join(str(j) for j in i) + '\n' for i in map)
+    

@@ -13,12 +13,11 @@ tot_time = 100
 #global variables
 IOT_Nodes = []
 BaseStation = []
+UAVs=[]
 
 
-
-def read_map():
-    pass
-
+def read_map(map_name):
+    map = open(map_name, 'r')
 
 def train():
     for episode in range(tot_episodes):
