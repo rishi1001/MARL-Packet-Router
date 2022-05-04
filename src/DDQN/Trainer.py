@@ -39,9 +39,7 @@ class DDQNTrainer:
         self.agent.train(mini_batch)
 
 
-    # whaaat
-
-    def should_fill_replay_memory(self):
+    def should_fill_replay_memory(self):  # maybe remove and always fill replay memory to simplify
         target_size = self.replay_memory.get_max_size() * self.params.rm_pre_fill_ratio
         if self.replay_memory.get_size() >= target_size or self.replay_memory.full:
             if self.prefill_bar:

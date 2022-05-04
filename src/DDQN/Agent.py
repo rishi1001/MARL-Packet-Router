@@ -6,6 +6,8 @@ from tensorflow.keras.layers import Conv2D, Dense, Flatten, Concatenate, Input, 
 import numpy as np
 
 
+# main hurdle: figure out why so many models: targets have different models?
+
 def print_node(x):
     print(x)
     return x
@@ -76,9 +78,9 @@ class DDQNAgent(object):
 
         self.q_network = self.build_scalars_model(states)
         self.target_network = self.build_scalars_model(states, 'target_')
-        self.hard_update()
+        self.hard_update()  # target network gets weights from q_network
 
-        
+        # why are there 2 models? q_network and target_network??
 
         q_values = self.q_network.output
         q_target_values = self.target_network.output
@@ -89,7 +91,7 @@ class DDQNAgent(object):
         one_hot_max_action = tf.one_hot(max_action, depth=self.num_actions, dtype=float)
         q_star = tf.reduce_sum(tf.multiply(one_hot_max_action, q_target_values, name='mul_hot_target'), axis=1,
                                name='q_star')
-        self.q_star_model = Model(inputs=states, outputs=q_star)
+        self.q_star_model = Model(inputs=states, outputs=q_star)    # whaaat?
 
         # Define Bellman loss
         one_hot_rm_action = tf.one_hot(action_input, depth=self.num_actions, on_value=1.0, off_value=0.0, dtype=float)
@@ -121,20 +123,7 @@ class DDQNAgent(object):
         if stats:
             stats.set_model(self.target_network)
 
-    def build_model(self, map_proc, states_proc, inputs, name=''):
-
-        flatten_map = self.create_map_proc(map_proc, name)
-
-        layer = Concatenate(name=name + 'concat')([flatten_map, states_proc])
-        for k in range(self.params.hidden_layer_num):
-            layer = Dense(self.params.hidden_layer_size, activation='relu', name=name + 'hidden_layer_all_' + str(k))(
-                layer)
-        output = Dense(self.num_actions, activation='linear', name=name + 'output_layer')(layer)
-
-        model = Model(inputs=inputs, outputs=output)
-
-        return model
-
+   
     def build_scalars_model(self, inputs, name=''):
 
         layer = Concatenate(name=name + 'concat')(inputs)
@@ -147,17 +136,6 @@ class DDQNAgent(object):
 
         return model
 
-    def build_blind_model(self, inputs, name=''):
-
-        layer = inputs
-        for k in range(self.params.hidden_layer_num):
-            layer = Dense(self.params.hidden_layer_size, activation='relu', name=name + 'hidden_layer_all_' + str(k))(
-                layer)
-        output = Dense(self.num_actions, activation='linear', name=name + 'output_layer')(layer)
-
-        model = Model(inputs=inputs, outputs=output)
-
-        return model
 
 
     def act(self, state):
@@ -230,7 +208,7 @@ class DDQNAgent(object):
         self.target_network.set_weights(
             [w_new * alpha + w_old * (1. - alpha) for w_new, w_old in zip(weights, target_weights)])
 
-    def train(self, experiences):
+    def train(self, experiences):   # standard training loop. remove map and blind agents
         boolean_map = experiences[0]
         float_map = experiences[1]
         scalars = tf.convert_to_tensor(experiences[2], dtype=tf.float32)
