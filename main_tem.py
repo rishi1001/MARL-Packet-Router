@@ -8,6 +8,7 @@ from src.Map import Map
 
 
 # add these in constraints
+num_memory_fill_eps = 5
 tot_episodes = 5
 tot_time = 100
 n = 50
@@ -27,8 +28,18 @@ Agents =map_.getAgents()
 def read_map(map_name):
     map = open(map_name, 'r')
 
+
 def fillMemory():
-    pass
+    
+    for _ in range(num_memory_fill_eps):
+        
+        for time in range(tot_time):
+            for agent in Agents:
+                agent.randomRun()
+
+            for node in IotNodes:
+                node.run()
+                        
 
 def train():
 

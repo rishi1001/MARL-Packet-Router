@@ -1,6 +1,5 @@
-
 from src.DQN.dqn_agent import DQNAgent
-
+import random
 
 
 
@@ -64,5 +63,24 @@ class Agent():
         self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) ## TODO 
 
 
+    def randomRun(self):
+        topPacket = self.popQueue()
+        topPacket.decrease_ttl()         # ttl of packet decreases
 
+        if(topPacket.get_ttl() == 0):
+            ## TODO : check reward for ttl = 0
+            reward = -100
+            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+        
 
+        action = random.randint(0,len(self.neighbours)+1)
+        if action == len(self.neighbours):
+            # TODO : heavy negative reward for dropping packet(as TTL non zero)
+            reward = -100
+            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+        
+        else:    
+            self.neighbours[action].pushQueue(topPacket)  ## push to next agent
+            reward = self.neighbours[action].getReward()
+            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+            

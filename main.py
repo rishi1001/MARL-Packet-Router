@@ -16,6 +16,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 # add these in constraints
+num_memory_fill_eps = 5
 tot_episodes = 5
 tot_time = 100
 n = 50
@@ -32,96 +33,44 @@ BaseStation_obj = map_.getBaseStation()
 Agents =map_.getAgents()
 
 
-def fill_memory(env, dqn_agent, num_memory_fill_eps):
-    """
-    Function that performs a certain number of episodes of random interactions with the environment to populate the replay buffer
-
-    Parameters
-    ---
-    env: gym.Env
-        Instance of the environment used for training
-    dqn_agent: DQNAgent
-        Agent to be trained
-    num_memory_fill_eps: int
-        Number of episodes of interaction to be performed
-
-    Returns
-    ---
-    none
-    """
-
+def fillMemory():
+    
     for _ in range(num_memory_fill_eps):
-        done = False
-        state = env.reset()
-
-        while not done:
-            action = env.action_space.sample()
-            next_state, reward, done, info = env.step(action)
-            dqn_agent.memory.store(state=state, 
-                                action=action, 
-                                next_state=next_state, 
-                                reward=reward, 
-                                done=done)
-
-
-def train(env, dqn_agent, num_train_eps, num_memory_fill_eps, update_frequency, batchsize, results_basepath, render=False):
-    """
-    Function to train the agent
-
-    Parameters
-    ---
-    env: gym.Env
-        Instance of the environment used for training
-    dqn_agent: DQNAgent
-        Agent to be trained
-    num_train_eps: int
-        Number of episodes of training to be performed
-    num_memory_fill_eps: int
-        Number of episodes of random interaction to be performed
-    update_frequency: int
-        Number of steps after which the target models must be updated
-    batchsize: int
-        Number of transitions to be sampled from the replay buffer to perform a learning step
-    results_basepath: str
-        Location where models and other result files are saved
-    render: bool
-        Whether to create a pop-up window display the interaction of the agent with the environment
-    
-    Returns
-    ---
-    none
-    """
-
-    fill_memory(env, dqn_agent, num_memory_fill_eps)
-    print('Memory filled. Current capacity: ', len(dqn_agent.memory))
-    
-
-    for ep_cnt in range(num_train_eps):
         
+        for time in range(tot_time):
+            for agent in Agents:
+                agent.randomRun()
 
-        done = False
-        state = env.reset()
+            for node in IotNodes:
+                node.run()
+                        
 
-        ep_score = 0
+def train():
 
-        while not done:
-            if render:
-                env.render()
+    step_cnt = 0
 
-            action = dqn_agent.select_action(state)
-            next_state, reward, done, info = env.step(action)
-            dqn_agent.memory.store(state=state, action=action, next_state=next_state, reward=reward, done=done)
+    for episode in range(tot_episodes):
 
-            dqn_agent.learn(batchsize=batchsize)
+        for time in range(tot_time):
+            ##TODO agent order affects current state
+            for agent in Agents:
+                agent.run()
 
-            if step_cnt % update_frequency == 0:
-                dqn_agent.update_target_net()
+                if step_cnt % update_frequency == 0:
+                    agent.dqn_agent.update_target_net()
 
-            state = next_state
-            ep_score += reward
-            step_cnt += 1
 
-        dqn_agent.update_epsilon()
+            for node in IotNodes:
+                node.run()
+        
+        step_cnt += 1
+        
+        for agent in Agents:
+            agent.dqn_agent.updateEpsilon()
+
+
+
+
 
 
 def test(env, dqn_agent, num_test_eps, seed, results_basepath, render=True):
