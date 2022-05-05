@@ -1,11 +1,11 @@
 
-# from src.DQN import DQN
+from src.DQN.dqn_agent import DQNAgent
 # class agent
 class Agent():
     def __init__(self,neighbours, x,y):
         self.queue = []
         self.neighbours = neighbours
-        self.dqn_object = DQN()
+        self.dqn_object = DQNAgent(self)        # TODO add parameters here
         self.position = (x,y)
 
     def pushQueue(self, packet):
@@ -16,7 +16,7 @@ class Agent():
 
     def nextAgent(self):
         # use dqn to find this
-        return self.dqn_object.nextAgent()
+        return self.dqn_object.nextAgent()      # TODO
 
     def trainAgent(self,reward):
         # use dqn to train this
@@ -29,7 +29,10 @@ class Agent():
         self.neighbors.append(neighbour)
 
     def isUAV(self):
-        return true
+        return True
+
+    def sendReward(self):       # TODO 
+        pass
 
 
 
