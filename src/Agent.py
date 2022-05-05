@@ -1,3 +1,4 @@
+
 from src.DQN.dqn_agent import DQNAgent
 
 
@@ -5,11 +6,15 @@ from src.DQN.dqn_agent import DQNAgent
 
 # class agent
 class Agent():
-    def __init__(self,neighbours, x,y):
+    def __init__(self,neighbours, x,y, batchsize = 64):     # TODO define state
         self.queue = []
         self.neighbours = neighbours
-        self.dqn_object = DQNAgent(self)        # TODO add parameters here
+        self.dqn_object = None
         self.position = (x,y)
+        self.batchsize = batchsize
+
+    def initDQN(self):
+        self.dqn_object = DQNAgent(self, state_size, len(self.neighbours)+1)        # TODO add parameters here
 
     def pushQueue(self, packet):
         self.queue.append(packet)
@@ -18,16 +23,15 @@ class Agent():
     def popQueue(self):
         return self.queue.pop(0)
 
-    def nextAgent(self):
+    def nextAction(self,state):
         # use dqn to find this
-        return self.dqn_object.nextAgent()      # TODO based in q-value
+        return self.dqn_object.selectAction(state)      # TODO based in q-value
 
-    def trainAgent(self,reward):
+    def trainAgent(self,state,action,nextState,reward):
         # use dqn to train this
-        self.dqn_object.trainAgent(reward)     ## TODO put in a replay memory
 
-        # dqn_agent.memory.store(state=state, action=action, next_state=next_state, reward=reward, done=done)
-        # dqn_agent.learn(batchsize=batchsize)
+        self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+        self.dqn_object.learn(batchsize=self.batchsize)
 
 
     def getPosition(self):
@@ -39,8 +43,9 @@ class Agent():
     def isUAV(self):
         return True
 
-    def sendReward(self):                      # TODO based on q-value 
-        pass
+    def sendReward(self):                      # based on q-value 
+        return self.dqn_object.getQValue()    # TODO Scale this value
+        
 
     def run(self):
         topPacket = self.popQueue()
@@ -50,10 +55,13 @@ class Agent():
             # TODO: negative reward for ttl = 0
             pass
                     
-        nextAgent = self.nextAgent()                ## from dqn
-        nextAgent.pushQueue(topPacket)  ## push to next agent
-        self.trainAgent(nextAgent.getReward()) ## train agent
+        nextAction = self.nextAction(state)                ## from dqn
+        if nextAction == len(self.neighbours):
+            # TODO : heavy negative reward for dropping packet(as TTL non zero)
+            pass
 
+        self.neighbours[nextAction].pushQueue(topPacket)  ## push to next agent
+        self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) ## TODO 
 
 
 
