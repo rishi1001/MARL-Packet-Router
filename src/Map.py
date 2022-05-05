@@ -1,8 +1,8 @@
 #import imp
-from pkgutil import ImpImporter
+#from pkgutil import ImpImporter
 import random
 from .Agent import Agent
-from .Iot_Nodes import Iot_Nodes
+from .IotNodes import IotNodes
 from .BaseStation import BaseStation
 
 # generate map of size n*m 
@@ -34,7 +34,7 @@ class Map():
                     map_[i][j]= agent
                     self.agents.append(agent)
                 else:
-                    iot = Iot_Nodes(rate, def_ttl) # TODO: add actual rate and def_ttl here
+                    iot = IotNodes(rate, def_ttl,i,j) # TODO: add actual rate and def_ttl here
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)  
 

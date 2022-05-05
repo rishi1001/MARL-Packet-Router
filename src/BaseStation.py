@@ -4,14 +4,20 @@ class BaseStation():
         reward = 0
         self.position = (x,y)
 
-    def accept_packet(self):
-        # some local computation maybe to update the variable reward
+    def acceptPacket(self):
+        # TODO some local computation maybe to update the variable reward
         pass 
 
-    def get_reward(self):
-        ## based on ttl of the packet
+    def getReward(self):
+        ## TODO based on ttl of the packet
         return self.reward
 
     def getPosition(self):
         return self.position
 
+    def isUAV(self):
+        return False
+    
+    def isBaseStation(self):
+        return True
+    

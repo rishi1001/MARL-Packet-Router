@@ -2,7 +2,7 @@
 from src.Agent import Agent
 from src.DDQN.Agent import DQN
 from src.BaseStation import BaseStation
-from src.Iot_Nodes import Iot_Nodes
+from IotNodes import IotNodes
 from src.Packets import packet
 from src.Map import Map
 
@@ -19,7 +19,7 @@ map_ = Map(n,m,p)
 grid_map = map_.generate()
 
 #global variables
-Iot_Nodes = map_.getIotNodes()
+IotNodes = map_.getIotNodes()
 BaseStation_obj = map_.getBaseStation()
 Agents =map_.getAgents()
 
@@ -29,27 +29,12 @@ def read_map(map_name):
 def train():
     for episode in range(tot_episodes):
         for time in range(tot_time):
-            
+            ##TODO agent order affects current state
             for agent in Agents:
-                top_packet = agent.popQueue()
-                top_packet.decrease_ttl()         # ttl of packet decreases
+                agent.run()
 
-                # TODO: check for 0 ttl ??
-                nextAgent = agent.nextAgent()
-                nextAgent.pushQueue(top_packet)
-                agent.trainAgent(BaseStation_obj.get_reward())
-
-                top_packet.addToPath(nextAgent.getPosition())   # adding the agent to packet path
-                
-
-            for node in Iot_Nodes:
-                node.generate_packet()
-            for node in Iot_Nodes:
-                agent = node.find_neighbour()
-                for packet in node.packetQueue:
-                    agent.pushQueue(packet)
-                    packet.addToPath(agent.getPosition())  # adding the agent to packet path
-            
+            for node in IotNodes:
+                node.run()
 
 
 

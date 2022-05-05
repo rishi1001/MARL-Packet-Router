@@ -50,7 +50,7 @@ class DQNAgent:
         self.memory = ReplayMemory(capacity=memory_capacity)
 
 
-    def update_target_net(self):
+    def updateTargetNet(self):
         """
         Function to copy the weights of the current policy net into the (frozen) target net
 
@@ -66,7 +66,7 @@ class DQNAgent:
         self.target_net.load_state_dict(self.policy_net.state_dict())
 
 
-    def update_epsilon(self):
+    def updateEpsilon(self):
         """
         Function for reducing the epsilon value (used for epsilon-greedy exploration with annealing)
 
@@ -82,7 +82,7 @@ class DQNAgent:
         self.epsilon = max(self.epsilon_min, self.epsilon*self.epsilon_decay)
 
 
-    def select_action(self, state):
+    def selectAction(self, state):
         """
         Uses epsilon-greedy exploration such that, if the randomly generated number is less than epsilon then the agent performs random action, else the agent executes the action suggested by the policy Q-network
         """
@@ -149,7 +149,7 @@ class DQNAgent:
         self.policy_net.optimizer.step()
         
 
-    def save_model(self, filename):
+    def saveModel(self, filename):
         """
         Function to save the policy network
 
@@ -165,7 +165,7 @@ class DQNAgent:
 
         self.policy_net.save_model(filename)
 
-    def load_model(self, filename):
+    def loadModel(self, filename):
         """
         Function to load model parameters
 

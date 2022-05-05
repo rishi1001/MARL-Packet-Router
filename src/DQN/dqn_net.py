@@ -25,7 +25,7 @@ class DQNNet(nn.Module):
         x = self.dense3(x)
         return x
 
-    def save_model(self, filename):
+    def saveModel(self, filename):
         """
         Function to save model parameters
 
@@ -41,7 +41,7 @@ class DQNNet(nn.Module):
 
         torch.save(self.state_dict(), filename)
 
-    def load_model(self, filename, device):
+    def loadModel(self, filename, device):
         """
         Function to load model parameters
 
