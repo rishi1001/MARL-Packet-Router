@@ -11,7 +11,25 @@ import pickle
 
 
 import torch
+from src.Map import Map
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+# add these in constraints
+tot_episodes = 5
+tot_time = 100
+n = 50
+m = 50
+p = 0.8
+
+# map
+map_ = Map(n,m,p)
+grid_map = map_.generate()
+
+#global variables
+IotNodes = map_.getIotNodes()
+BaseStation_obj = map_.getBaseStation()
+Agents =map_.getAgents()
 
 
 def fill_memory(env, dqn_agent, num_memory_fill_eps):
@@ -77,14 +95,9 @@ def train(env, dqn_agent, num_train_eps, num_memory_fill_eps, update_frequency, 
     fill_memory(env, dqn_agent, num_memory_fill_eps)
     print('Memory filled. Current capacity: ', len(dqn_agent.memory))
     
-    reward_history = []
-    epsilon_history = []
-
-    step_cnt = 0
-    best_score = -np.inf
 
     for ep_cnt in range(num_train_eps):
-        epsilon_history.append(dqn_agent.epsilon)
+        
 
         done = False
         state = env.reset()
@@ -109,21 +122,6 @@ def train(env, dqn_agent, num_train_eps, num_memory_fill_eps, update_frequency, 
             step_cnt += 1
 
         dqn_agent.update_epsilon()
-
-        reward_history.append(ep_score)
-        current_avg_score = np.mean(reward_history[-100:]) # moving average of last 100 episodes
-
-        print('Ep: {}, Total Steps: {}, Ep: Score: {}, Avg score: {}; Epsilon: {}'.format(ep_cnt,                           step_cnt, ep_score, current_avg_score, epsilon_history[-1]))
-        
-        if current_avg_score >= best_score:
-            dqn_agent.save_model('{}/dqn_model'.format(results_basepath))
-            best_score = current_avg_score
-
-    with open('{}/train_reward_history.pkl'.format(results_basepath), 'wb') as f:
-        pickle.dump(reward_history, f)
-
-    with open('{}/train_epsilon_history.pkl'.format(results_basepath), 'wb') as f:
-        pickle.dump(epsilon_history, f)
 
 
 def test(env, dqn_agent, num_test_eps, seed, results_basepath, render=True):
@@ -213,16 +211,16 @@ if __name__ ==  '__main__':
 
         os.makedirs(args.results_folder, exist_ok=True)
 
-        dqn_agent = DQNAgent(device, 
-                                env.observation_space.shape[0], 
-                                env.action_space.n, 
-                                discount=args.discount, 
-                                eps_max=args.eps_max, 
-                                eps_min=args.eps_min, 
-                                eps_decay=args.eps_decay,
-                                memory_capacity=args.memory_capacity,
-                                lr=args.lr,
-                                train_mode=True)
+        # dqn_agent = DQNAgent(device, 
+        #                         env.observation_space.shape[0], 
+        #                         env.action_space.n, 
+        #                         discount=args.discount, 
+        #                         eps_max=args.eps_max, 
+        #                         eps_min=args.eps_min, 
+        #                         eps_decay=args.eps_decay,
+        #                         memory_capacity=args.memory_capacity,
+        #                         lr=args.lr,
+        #                         train_mode=True)
 
         train(env=env, 
                 dqn_agent=dqn_agent, 

@@ -1,9 +1,9 @@
 #import imp
 #from pkgutil import ImpImporter
 import random
-from .Agent import Agent
-from .IotNodes import IotNodes
-from .BaseStation import BaseStation
+from Agent import Agent
+from IotNodes import IotNodes
+from BaseStation import BaseStation
 
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell

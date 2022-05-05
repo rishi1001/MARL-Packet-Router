@@ -23,20 +23,35 @@ IotNodes = map_.getIotNodes()
 BaseStation_obj = map_.getBaseStation()
 Agents =map_.getAgents()
 
+
 def read_map(map_name):
     map = open(map_name, 'r')
 
+def fillMemory():
+    pass
+
 def train():
+
+    step_cnt = 0
+
     for episode in range(tot_episodes):
+
         for time in range(tot_time):
             ##TODO agent order affects current state
             for agent in Agents:
                 agent.run()
 
+                if step_cnt % update_frequency == 0:
+                    agent.dqn_agent.update_target_net()
+
+
             for node in IotNodes:
                 node.run()
-
-
+        
+        step_cnt += 1
+        
+        for agent in Agents:
+            agent.dqn_agent.updateEpsilon()
 
 
 def test():
