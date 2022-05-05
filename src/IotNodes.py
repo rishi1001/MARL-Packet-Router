@@ -18,9 +18,9 @@ class IotNodes():
     
     
     def findNeighbour(self):
+        ## TODO :policy to find the neighbour
         pass
-        # TODO
-        ## doubt?? 
+        
 
     def isUAV(self):
         return False
