@@ -9,6 +9,7 @@ class IotNodes():
         self.rate=rate
         self.def_ttl=def_ttl
         self.position=(x,y)
+        self.total_packets=0
     
     def generatePacket(self):
         l=[]
@@ -20,12 +21,15 @@ class IotNodes():
     def findNeighbour(self):
         ## TODO :policy to find the neighbour
         pass
-        
 
     def isUAV(self):
         return False
 
+    def isBaseStation(self):
+        return False
+
     def run(self):
+        self.total_packets+=self.rate
         packets=self.generatePacket()
         for packet in packets:
             packet.decrease_ttl()
@@ -35,3 +39,6 @@ class IotNodes():
 
     def getPosition(self):
         return self.position
+
+    def getVal(self):               # returns the total number of packets generated
+        return self.total_packets

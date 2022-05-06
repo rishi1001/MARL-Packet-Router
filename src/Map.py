@@ -43,7 +43,7 @@ class Map():
             for j in range(self.m):
                 if i==x and j==y:
                     continue
-                if map_[i,j].isUAV:
+                if map_[i,j].isUAV:         # TODO check if correct ? , need to add neighbours of IOT nodes and Base station
                     if i>0 and map_[i-1, j].isUAV:
                         map_[i,j].addNeighbour(map_[i-1, j])
                     if j>0 and map_[i, j-1].isUAV:
@@ -63,3 +63,23 @@ class Map():
      
     def getIotNodes(self):
         return self.Iot_Nodes
+
+    def renderMap(self):
+        for i in range(self.m):
+            print('----',end="")
+        print()
+        for i in range(self.n):
+            print('|',end="")
+            for j in range(self.m):
+                if self.map[i][j].isBaseStation():
+                    print('|',end="")
+                    print(self.map[i][j].getVal(),end="")
+                    print('|',end="")
+                else:
+                    print(self.map[i][j].getVal(),end="")
+                print('|',end="")
+            print()
+            for j in range(self.m):
+                print('----',end="")
+            print()
+        print()

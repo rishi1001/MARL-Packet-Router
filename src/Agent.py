@@ -42,6 +42,9 @@ class Agent():
     def isUAV(self):
         return True
 
+    def isBaseStation(self):
+        return False
+
     def sendReward(self):                      # based on q-value 
         return self.dqn_object.getQValue()    # TODO Scale this value
         
@@ -54,10 +57,12 @@ class Agent():
             # TODO: negative reward for ttl = 0
             pass
                     
-        nextAction = self.nextAction(state)                ## from dqn
+        nextAction = self.nextAction(state)                ## from dqn      
         if nextAction == len(self.neighbours):
             # TODO : heavy negative reward for dropping packet(as TTL non zero)
             pass
+
+        ## TODO : if neighbours.nextAction is base station then call accept packet
 
         self.neighbours[nextAction].pushQueue(topPacket)  ## push to next agent
         self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) ## TODO 
@@ -83,4 +88,8 @@ class Agent():
             self.neighbours[action].pushQueue(topPacket)  ## push to next agent
             reward = self.neighbours[action].getReward()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+
+    
+    def getVal(self):
+        return len(self.queue)
             
