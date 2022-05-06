@@ -12,7 +12,6 @@ class BaseStation():
     def acceptPacket(self):
         # TODO some local computation maybe to update the variable reward
         self.packetRecv += 1
-        pass 
 
     def getReward(self):
         ## TODO based on ttl of the packet

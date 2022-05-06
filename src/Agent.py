@@ -32,6 +32,9 @@ class Agent():
         self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         self.dqn_object.learn(batchsize=self.batchsize)
 
+    def acceptPacket(self,packet ):
+        ## TODO add queue size 
+        self.pushQueue(packet)
 
     def getPosition(self):
         return self.position
@@ -62,9 +65,7 @@ class Agent():
             # TODO : heavy negative reward for dropping packet(as TTL non zero)
             pass
 
-        ## TODO : if neighbours.nextAction is base station then call accept packet
-
-        self.neighbours[nextAction].pushQueue(topPacket)  ## push to next agent
+        self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) ## TODO 
 
 
@@ -85,7 +86,7 @@ class Agent():
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         
         else:    
-            self.neighbours[action].pushQueue(topPacket)  ## push to next agent
+            self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
             reward = self.neighbours[action].getReward()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
 
