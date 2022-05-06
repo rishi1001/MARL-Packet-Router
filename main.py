@@ -45,11 +45,14 @@ def fillMemory():
                 node.run()
                         
 
-def train():
+def train(graphics=False):
 
     step_cnt = 0
 
     for episode in range(tot_episodes):
+
+        if graphics:
+            print("Episode Number : ", episode)
 
         for time in range(tot_time):
             ##TODO agent order affects current state
@@ -62,6 +65,11 @@ def train():
 
             for node in IotNodes:
                 node.run()
+
+            if graphics:
+                map_.renderMap()
+
+            
         
         step_cnt += 1
         

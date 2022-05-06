@@ -52,6 +52,9 @@ class Agent():
         self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         self.dqn_object.learn(batchsize=self.batchsize)
 
+    def acceptPacket(self,packet ):
+        ## TODO add queue size 
+        self.pushQueue(packet)
 
     def getPosition(self):
         return self.position
@@ -66,6 +69,9 @@ class Agent():
         return False
      
     def isIot(self):
+        return False
+
+    def isBaseStation(self):
         return False
 
     def sendReward(self):                      # based on q-value 
@@ -93,7 +99,7 @@ class Agent():
             nextState = self.getCurrentState()
             self.trainAgent(state,nextAction,nextState,1000) 
 
-        self.neighbours[nextAction].pushQueue(topPacket)  ## push to next agent
+        self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
         self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) 
 
@@ -119,8 +125,12 @@ class Agent():
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         
         else:    
-            self.neighbours[action].pushQueue(topPacket)  ## push to next agent
+            self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
             reward = self.neighbours[action].getReward()
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+
+    
+    def getVal(self):
+        return len(self.queue)
             
