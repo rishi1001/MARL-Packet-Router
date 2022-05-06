@@ -18,6 +18,9 @@ class BaseStation():
     def isUAV(self):
         return False
     
-    def isBaseStation(self):
+    def isBase(self):
         return True
+     
+    def isIot(self):
+        return False
     

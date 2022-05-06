@@ -43,15 +43,15 @@ class Map():
             for j in range(self.m):
                 if i==x and j==y:
                     continue
-                if map_[i,j].isUAV:
-                    if i>0 and map_[i-1, j].isUAV:
-                        map_[i,j].addNeighbour(map_[i-1, j])
-                    if j>0 and map_[i, j-1].isUAV:
-                        map_[i,j].addNeighbour(map_[i, j-1])
-                    if i<self.n-1 and map_[i+1, j].isUAV:
-                        map_[i,j].addNeighbour(map_[i+1, j])
-                    if j<self.m-1 and map_[i-1, j+1].isUAV:
-                        map_[i,j].addNeighbour(map_[i, j+1])
+                # if map_[i,j].isUAV: # commenting this because IoT nodes also need neighbours
+                if i>0 and map_[i-1, j].isUAV() or map_[i-1, j].isBase():
+                    map_[i,j].addNeighbour(map_[i-1, j])
+                if j>0 and map_[i, j-1].isUAV() or map_[i, j-1].isBase():
+                    map_[i,j].addNeighbour(map_[i, j-1])
+                if i<self.n-1 and map_[i+1, j].isUAV() or map_[i+1, j].isBase():
+                    map_[i,j].addNeighbour(map_[i+1, j])
+                if j<self.m-1 and map_[i-1, j+1].isUAV() or map_[i-1, j+1].isBase():
+                    map_[i,j].addNeighbour(map_[i, j+1])
 
         self.map = map_ 
 

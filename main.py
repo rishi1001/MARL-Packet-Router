@@ -30,7 +30,7 @@ grid_map = map_.generate()
 #global variables
 IotNodes = map_.getIotNodes()
 BaseStation_obj = map_.getBaseStation()
-Agents =map_.getAgents()
+Agents = map_.getAgents()
 
 
 def fillMemory():
