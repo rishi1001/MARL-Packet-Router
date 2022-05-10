@@ -1,22 +1,26 @@
 from src.Packets import packet
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 
 class BaseStation():
 
-    def __init__(self, x, y, reward):
-        self.reward = 1000
+    def __init__(self, x, y):
         self.position = (x,y)
         self.packetRecv = 0
         self.packets_received = []
 
 
     def acceptPacket(self, packet):
-        # TODO some local computation maybe to update the variable reward
         self.packetRecv += 1
         self.packets_received.append(packet)
 
     def getReward(self):
         # ttl can be extracted from last received packet 
+        # TODO scale this reward
         ttl = self.packets_received[-1].get_ttl()
         return ttl*ttl
 

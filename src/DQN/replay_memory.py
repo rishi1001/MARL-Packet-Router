@@ -7,6 +7,11 @@ import numpy as np
 
 import torch
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 class ReplayMemory:
     """
     Class representing the replay buffer used for storing experiences for off-policy learning

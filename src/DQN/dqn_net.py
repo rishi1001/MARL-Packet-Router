@@ -7,6 +7,11 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 class DQNNet(nn.Module):
     """
     Class that defines the architecture of the neural network for the DQN agent

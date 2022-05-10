@@ -5,6 +5,13 @@ from Agent import Agent
 from IotNodes import IotNodes
 from BaseStation import BaseStation
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
+def_ttl = int(configur.get('packet','def_ttl'))
+
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell
 class Map():
@@ -16,13 +23,13 @@ class Map():
         self.map = []
         self.agents = []
         self.Iot_Nodes = []
-        self.BaseStation = 0
+        self.BaseStation = None
 
     def generate(self):
         map_=[['-' for i in range(self.m)] for j in range(self.n)]
         x=random.randint(0,self.n-1)
         y=random.randint(0,self.m-1)
-        map_[x][y]= BaseStation()
+        map_[x][y]= BaseStation(x,y)
         self.BaseStation = map_[x][y]
         for i in range(self.n):
             for j in range(self.m):
@@ -34,7 +41,7 @@ class Map():
                     map_[i][j]= agent
                     self.agents.append(agent)
                 else:
-                    iot = IotNodes(rate, def_ttl,i,j) # TODO: add actual rate and def_ttl here
+                    iot = IotNodes(rate, def_ttl,i,j) # TODO: add actual rate
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)  
 

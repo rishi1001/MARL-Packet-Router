@@ -3,8 +3,6 @@ Script containing the training and testing loop for DQNAgent
 """
 
 import os
-import csv
-import gym
 import argparse
 import numpy as np
 import pickle
@@ -14,14 +12,22 @@ import torch
 from src.Map import Map
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+print (configur.read('config.ini'))
 
-# add these in constraints
-num_memory_fill_eps = 5
-tot_episodes = 5
-tot_time = 100
-n = 50
-m = 50
-p = 0.8
+
+# TODO add these in constraints
+num_memory_fill_eps = int(configur.get('train_model','num_memory_fill_eps'))
+tot_episodes = int(configur.get('train_model','tot_episodes'))
+tot_time = int(configur.get('train_model','tot_time'))
+update_frequency = int(configur.get('train_model','update_frequency'))
+
+
+n = int(configur.get('map','n'))
+m = int(configur.get('map','m'))
+p = float(configur.get('map','p'))
 
 # map
 map_ = Map(n,m,p)
@@ -54,13 +60,14 @@ def train(graphics=False):
         if graphics:
             print("Episode Number : ", episode)
 
+        for agent in Agents:                    # update the target net after update_frequency steps
+            if step_cnt % update_frequency == 0 and step_cnt!=0:
+                    agent.dqn_agent.update_target_net()
+
         for time in range(tot_time):
-            ##TODO agent order affects current state
+            ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
             for agent in Agents:
                 agent.run()
-
-                if step_cnt % update_frequency == 0:
-                    agent.dqn_agent.update_target_net()
 
 
             for node in IotNodes:

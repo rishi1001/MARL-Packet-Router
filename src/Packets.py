@@ -1,3 +1,8 @@
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 class packet():
 
     def __init__(self,ttl):

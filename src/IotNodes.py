@@ -3,6 +3,11 @@ sys.path.append(".")
 from Packets import packet
 from Agent import Agent
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 ## def_ttl initial value of ttl
 class IotNodes():
 
@@ -14,7 +19,7 @@ class IotNodes():
         self.total_packets=0
         self.queue = []
     
-    def generatePacket(self):   
+    def generatePacket(self):   # TODO what is this ? , and use of numpy ? and use of random ? 
         """
         generates 0-rate number of packets and adds to the back of queue
         In every cycle, transmission_rate number of packets would be transmitted to agents

@@ -2,6 +2,11 @@ from src.DQN.dqn_agent import DQNAgent
 import random
 from utils import getManhattanDistance
 
+from configparser import ConfigParser
+  
+configur = ConfigParser()
+configur.read('config.ini')
+
 
 # class agent
 class Agent():
@@ -45,7 +50,7 @@ class Agent():
 
     def nextAction(self,state):
         # use dqn to find this
-        return self.dqn_object.selectAction(state)      # TODO based in q-value
+        return self.dqn_object.selectAction(state)
 
     def trainAgent(self,state,action,nextState,reward):
         # use dqn to train this
