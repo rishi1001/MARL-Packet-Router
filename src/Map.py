@@ -30,7 +30,7 @@ class Map():
                     continue
                 x=random.uniform(0,1)
                 if(x<=self.p):
-                    agent  = Agent([], i, j)
+                    agent  = Agent([], i, j, self.BaseStation)
                     map_[i][j]= agent
                     self.agents.append(agent)
                 else:

@@ -1,18 +1,19 @@
 from src.DQN.dqn_agent import DQNAgent
 import random
-
+from utils import getManhattanDistance
 
 
 # class agent
 class Agent():
-    def __init__(self,neighbours, x,y, batchsize = 64):    
+    def __init__(self,neighbours, x,y, , BaseStation, batchsize = 64):    
         self.queue = []
         self.neighbours = neighbours
         self.dqn_object = None
         self.position = (x,y)
         self.batchsize = batchsize
         self.state_size = len(self.neighbours) + 2
-        self.action_size = len(self.neighbours) + 1     
+        self.action_size = len(self.neighbours) + 1
+        self.targetBaseStation = BaseStation 
 
     def getCurrentState(self):
         """
@@ -52,7 +53,7 @@ class Agent():
         self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         self.dqn_object.learn(batchsize=self.batchsize)
 
-    def acceptPacket(self,packet ):
+    def acceptPacket(self,packet):
         ## TODO add queue size 
         self.pushQueue(packet)
 
@@ -84,24 +85,19 @@ class Agent():
         topPacket = self.popQueue()
 
         if topPacket == -1:
-            pass # if the queue is already empty, nothing to do
+            return # if the queue is already empty, nothing to do
 
-        if(topPacket.get_ttl() == 0):
-            # TODO: negative reward for ttl = 0
-            pass
         
         nextAction = self.nextAction(state)                ## from dqn
-        if nextAction == len(self.neighbours):
-            # TODO : heavy negative reward for dropping packet(as TTL non zero)
-            pass
-        
-        if self.neighbours[nextAction].isBase():   # huge +ve reward. no need to push packet in neighbour
+        if topPacket.get_ttl() == 0 or nextAction == len(self.neighbours):  # ttl 0 or  last action (dropping the packet)
             nextState = self.getCurrentState()
-            self.trainAgent(state,nextAction,nextState,1000) 
-
+            self.trainAgent(state,nextAction,nextState,-1000) 
+            return
+        
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
-        self.trainAgent(state,nextAction,nextState,self.neighbours[nextAction].getReward()) 
+        reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
+        self.trainAgent(state,nextAction,nextState,reward) 
 
 
     def randomRun(self):
@@ -112,21 +108,19 @@ class Agent():
         # topPacket.decrease_ttl()         # ttl of packet decreases
 
         if(topPacket.get_ttl() == 0):
-            ## TODO : check reward for ttl = 0
-            reward = -100
+            reward = -1000
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         
 
         action = random.randint(0,len(self.neighbours)+1)
         if action == len(self.neighbours):
-            # TODO : heavy negative reward for dropping packet(as TTL non zero)
-            reward = -100
+            reward = -1000
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
         
         else:    
             self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
-            reward = self.neighbours[action].getReward()
+            reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
 
