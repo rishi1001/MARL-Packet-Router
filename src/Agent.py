@@ -5,7 +5,7 @@ from utils import getManhattanDistance
 
 # class agent
 class Agent():
-    def __init__(self,neighbours, x,y, , BaseStation, batchsize = 64):    
+    def __init__(self,neighbours, x,y, BaseStation, batchsize = 64):    
         self.queue = []
         self.neighbours = neighbours
         self.dqn_object = None
