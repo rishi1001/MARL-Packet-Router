@@ -90,12 +90,14 @@ class Agent():
         
         nextAction = self.nextAction(state)                ## from dqn
         if topPacket.get_ttl() == 0 or nextAction == len(self.neighbours):  # ttl 0 or  last action (dropping the packet)
+                                                                        # TODO : keep different reward for dropping and ttl =0?  
             nextState = self.getCurrentState()
             self.trainAgent(state,nextAction,nextState,-1000) 
             return
         
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
+        #TODO: reward should be based on q-value and TTL
         reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
         self.trainAgent(state,nextAction,nextState,reward) 
 
@@ -120,6 +122,8 @@ class Agent():
         
         else:    
             self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
+            #TODO: reward should be based on q-value and TTL
+            
             reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
