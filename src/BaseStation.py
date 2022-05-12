@@ -1,10 +1,11 @@
+from distutils.command.config import config
 from src.Packets import packet
 
 from configparser import ConfigParser
   
 configur = ConfigParser()
 configur.read('config.ini')
-
+scale_base_reward = config.read(configur.get('reward','scale_base_reward'))
 
 class BaseStation():
 
@@ -19,10 +20,8 @@ class BaseStation():
         self.packets_received.append(packet)
 
     def getReward(self):
-        # ttl can be extracted from last received packet 
-        # TODO scale this reward
         ttl = self.packets_received[-1].get_ttl()
-        return ttl*ttl
+        return scale_base_reward*ttl*ttl
 
     def getPosition(self):
         return self.position

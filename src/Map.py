@@ -10,8 +10,7 @@ from configparser import ConfigParser
 configur = ConfigParser()
 configur.read('config.ini')
 
-def_ttl = int(configur.get('packet','def_ttl'))
-
+defTtl = int(configur.get('packet','def_ttl'))
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell
 class Map():
@@ -41,7 +40,8 @@ class Map():
                     map_[i][j]= agent
                     self.agents.append(agent)
                 else:
-                    iot = IotNodes(rate, def_ttl,i,j) # TODO: add actual rate
+                    rate=  random.randint(0,10) # TODO: add actual rate
+                    iot = IotNodes(rate, defTtl,i,j) 
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)  
 
@@ -70,6 +70,7 @@ class Map():
      
     def getIotNodes(self):
         return self.Iot_Nodes
+        
 
     def renderMap(self):
         for i in range(self.m):
@@ -90,3 +91,22 @@ class Map():
                 print('----',end="")
             print()
         print()
+    def dummyMap(self):  ## 1*3 map
+        map_= map_=[['-' for i in range(1)] for j in range(3)]
+        map[0][0] = BaseStation(0,0)
+        self.BaseStation = map_[0][0]
+
+        agent  = Agent([], 0, 1, self.BaseStation)
+        map_[0][1]= agent
+        self.agents.append(agent)
+
+        rate=  random.randint(0,10) # TODO: add actual rate
+        iot = IotNodes(rate, defTtl,0,2) 
+        map_[0][2]= iot
+        self.Iot_Nodes.append(iot)  
+
+
+        map[0][1].addNeighbour(map[0][0])
+        map[0][2].addNeighbour(map[0][1])
+
+        

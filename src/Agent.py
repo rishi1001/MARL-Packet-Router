@@ -6,7 +6,9 @@ from configparser import ConfigParser
   
 configur = ConfigParser()
 configur.read('config.ini')
-
+maxTtl = int(configur.get('packet','maxTtl')) 
+packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
+ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
 
 # class agent
 class Agent():
@@ -33,7 +35,7 @@ class Agent():
         if len(self.queue)>0:
             state.append(self.queue[0].get_ttl())
         else:
-            state.append(1000) # TODO: MAX_TTL??
+            state.append(maxTtl) #TODO : MAX_TTL??
         return state
 
     def initDQN(self):
@@ -94,10 +96,13 @@ class Agent():
 
         
         nextAction = self.nextAction(state)                ## from dqn
-        if topPacket.get_ttl() == 0 or nextAction == len(self.neighbours):  # ttl 0 or  last action (dropping the packet)
-                                                                        # TODO : keep different reward for dropping and ttl =0?  
-            nextState = self.getCurrentState()
-            self.trainAgent(state,nextAction,nextState,-1000) 
+        nextState = self.getCurrentState()
+        if topPacket.get_ttl() == 0:
+            self.trainAgent(state,nextAction,nextState,ttl_zero_reward) 
+            return
+        
+        if  nextAction == len(self.neighbours):  
+            self.trainAgent(state,nextAction,nextState,packet_drop_reward) 
             return
         
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
