@@ -42,7 +42,9 @@ Agents = map_.getAgents()
 
 
 def fillMemory():
-    
+    for agent in Agents:
+        agent.initDQN(device)
+
     for _ in range(num_memory_fill_eps):
         
         for time in range(tot_time):
@@ -54,9 +56,7 @@ def fillMemory():
                         
 
 def train(foldername,graphics=False,):
-    for agent in Agents:
-        agent.initDQN(device)
-
+    
     step_cnt = 0
 
     for episode in range(tot_episodes):
