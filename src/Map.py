@@ -34,8 +34,8 @@ class Map():
             for j in range(self.m):
                 if i==x and j==y:
                     continue
-                x=random.uniform(0,1)
-                if(x<=self.p):
+                prob=random.uniform(0,1)
+                if(prob<=self.p):
                     agent  = Agent([], i, j, self.BaseStation)
                     map_[i][j]= agent
                     self.agents.append(agent)
@@ -48,19 +48,20 @@ class Map():
         # populate neightbours for each agent
         for i in range(self.n):
             for j in range(self.m):
-                if i==x and j==y:
+                if map_[i][j].isBase():
                     continue
                 # if map_[i,j].isUAV: # commenting this because IoT nodes also need neighbours
-                if i>0 and map_[i-1, j].isUAV() or map_[i-1, j].isBase():
-                    map_[i,j].addNeighbour(map_[i-1, j])
-                if j>0 and map_[i, j-1].isUAV() or map_[i, j-1].isBase():
-                    map_[i,j].addNeighbour(map_[i, j-1])
-                if i<self.n-1 and map_[i+1, j].isUAV() or map_[i+1, j].isBase():
-                    map_[i,j].addNeighbour(map_[i+1, j])
-                if j<self.m-1 and map_[i-1, j+1].isUAV() or map_[i-1, j+1].isBase():
-                    map_[i,j].addNeighbour(map_[i, j+1])
+                if i>0 and (map_[i-1][j].isUAV() or map_[i-1][j].isBase()):
+                    map_[i][j].addNeighbour(map_[i-1][j])
+                if j>0 and (map_[i][j-1].isUAV() or map_[i][j-1].isBase()):
+                    map_[i][j].addNeighbour(map_[i][j-1])
+                if i<self.n-1 and (map_[i+1][j].isUAV() or map_[i+1][j].isBase()):
+                    map_[i][j].addNeighbour(map_[i+1][j])
+                if j<self.m-1 and (map_[i][j+1].isUAV() or map_[i][j+1].isBase()):
+                    map_[i][j].addNeighbour(map_[i][j+1])
 
         self.map = map_ 
+        # print("map created of length: ", len(self.map))
 
     def getBaseStation(self):
         return self.BaseStation
@@ -80,11 +81,17 @@ class Map():
             print('|',end="")
             for j in range(self.m):
                 if self.map[i][j].isBase():
-                    print('|',end="")
+                    print(' |',end="")
                     print(self.map[i][j].getVal(),end="")
-                    print('|',end="")
+                    print('| ',end="")
+                elif self.map[i][j].isIot():
+                    print(' -',end="")
+                    print(self.map[i][j].getVal(),end="")
+                    print('- ',end="")
                 else:
+                    print('  ',end="")
                     print(self.map[i][j].getVal(),end="")
+                    print('  ',end="")
                 print('|',end="")
             print()
             for j in range(self.m):

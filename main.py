@@ -6,7 +6,8 @@ import os
 import argparse
 import numpy as np
 import pickle
-
+from tqdm import tqdm
+import time
 
 import torch
 from src.Map import Map
@@ -30,10 +31,11 @@ p = float(configur.get('map','p'))
 
 # map
 map_ = Map(n,m,p)
+map_.generate()
 #grid_map = map_.generate()
 
 ## Initially
-grid_map = map_.dummyMap() 
+# grid_map = map_.dummyMap() 
 
 #global variables
 IotNodes = map_.getIotNodes()
@@ -59,14 +61,14 @@ def train(foldername,graphics=False,):
     
     step_cnt = 0
 
-    for episode in range(tot_episodes):
+    for episode in tqdm(range(tot_episodes)):
 
-        if graphics:
-            print("Episode Number : ", episode)
+        # if graphics:
+            # print("Episode Number : ", episode)
 
-        for agent in Agents:                    # update the target net after update_frequency steps
-            if step_cnt % update_frequency == 0 and step_cnt!=0:
-                    agent.dqn_object.update_target_net()
+        if step_cnt % update_frequency == 0 and step_cnt!=0:
+            for agent in Agents:                    # update the target net after update_frequency steps   
+                agent.dqn_object.update_target_net()
 
         for time in range(tot_time):
             ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
@@ -77,7 +79,7 @@ def train(foldername,graphics=False,):
             for node in IotNodes:
                 node.run()
 
-            if graphics:
+            if graphics and episode == tot_episodes-1 :
                 map_.renderMap()
             
         
@@ -89,7 +91,7 @@ def train(foldername,graphics=False,):
 
         if(episode% save_frequency == 0):
             for agent in Agents:
-                agent.dqn_object.saveModel('{}/dqn_model/agent at - {}'.format(foldername,agent.getPosition()))
+                agent.dqn_object.saveModel('./{}/dqn_model/agent_at_{}'.format(foldername,agent.getPosition()))
 #                agent.dqn_object.saveModel('dqn-model')
 
 

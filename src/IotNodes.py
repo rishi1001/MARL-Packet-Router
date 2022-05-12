@@ -58,7 +58,7 @@ class IotNodes():
             if self.getQueueSize() > 0:   # check if queue has any packets
                 packet = self.queue.pop(0)
                 agent=self.findNeighbour()
-                agent.pushQueue(packet)
+                agent.acceptPacket(packet)
             
 
     def getPosition(self):

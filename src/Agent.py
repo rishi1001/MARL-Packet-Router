@@ -90,7 +90,7 @@ class Agent():
         return False
 
     def getReward(self):                      # based on q-value 
-        return agent_to_agent_scale*self.dqn_object.getQValue()    # TODO Scale this value. 
+        return agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
         
     def run(self):
         state = self.getCurrentState()
@@ -129,13 +129,14 @@ class Agent():
         if topPacket == -1:
             return # if the queue is already empty, nothing to do
 
-
+        action = random.randint(0,len(self.neighbours))
         if(topPacket.get_ttl() == 0):
             reward = -1000
+            nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         
 
-        action = random.randint(0,len(self.neighbours))
+        
         if action == len(self.neighbours):
             reward = -1000
             nextState = self.getCurrentState()
