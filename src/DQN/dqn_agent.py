@@ -168,7 +168,7 @@ class DQNAgent:
         none
         """
 
-        self.policy_net.save_model(filename)
+        self.policy_net.saveModel(filename)
 
     def loadModel(self, filename):
         """

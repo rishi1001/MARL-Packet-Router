@@ -25,8 +25,9 @@ class IotNodes():
         In every cycle, transmission_rate number of packets would be transmitted to agents
         """
         l=[]
-        num_packets = np.random.randint(self.rate)
-        for i in range(num_packets):
+        #print(self.rate)
+        #num_packets = np.random.randint(self.rate) # TODO : why random ?
+        for i in range(self.rate):
             self.queue.append(packet(self.def_ttl))
     
     

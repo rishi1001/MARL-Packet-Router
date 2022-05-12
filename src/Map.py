@@ -79,7 +79,7 @@ class Map():
         for i in range(self.n):
             print('|',end="")
             for j in range(self.m):
-                if self.map[i][j].isBaseStation():
+                if self.map[i][j].isBase():
                     print('|',end="")
                     print(self.map[i][j].getVal(),end="")
                     print('|',end="")
@@ -91,6 +91,8 @@ class Map():
                 print('----',end="")
             print()
         print()
+
+
     def dummyMap(self):  ## 1*3 map
         map_= map_=[['-' for i in range(3)] for j in range(1)]
         map_[0][0] = BaseStation(0,0)
@@ -108,4 +110,5 @@ class Map():
 
         map_[0][1].addNeighbour(map_[0][0])
         map_[0][2].addNeighbour(map_[0][1])
+        self.map = map_ 
 

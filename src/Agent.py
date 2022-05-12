@@ -9,6 +9,7 @@ configur.read('config.ini')
 maxTtl = int(configur.get('packet','maxTtl')) 
 packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
 ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
+agent_to_agent_scale = int(configur.get('reward','agent_to_agent_scale'))
 
 # class agent
 class Agent():
@@ -39,7 +40,7 @@ class Agent():
         return state
 
     def initDQN(self,device):
-        self.dqn_object = DQNAgent(self, device ,self.state_size, self.action_size)        # TODO add parameters here
+        self.dqn_object = DQNAgent(device ,self.state_size, self.action_size)        # TODO add parameters here
 
     def pushQueue(self, packet):
         self.queue.append(packet)
@@ -57,7 +58,7 @@ class Agent():
     def trainAgent(self,state,action,nextState,reward):
         # use dqn to train this
 
-        self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+        self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         self.dqn_object.learn(batchsize=self.batchsize)
 
     def acceptPacket(self,packet):
@@ -88,8 +89,8 @@ class Agent():
     def isBaseStation(self):
         return False
 
-    def sendReward(self):                      # based on q-value 
-        return self.dqn_object.getQValue()    # TODO Scale this value. 
+    def getReward(self):                      # based on q-value 
+        return agent_to_agent_scale*self.dqn_object.getQValue()    # TODO Scale this value. 
         
     def run(self):
         state = self.getCurrentState()
@@ -127,14 +128,14 @@ class Agent():
 
         if(topPacket.get_ttl() == 0):
             reward = -1000
-            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+            self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         
 
         action = random.randint(0,len(self.neighbours)+1)
         if action == len(self.neighbours):
             reward = -1000
             nextState = self.getCurrentState()
-            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+            self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         
         else:    
             self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
@@ -142,9 +143,8 @@ class Agent():
             
             reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
             nextState = self.getCurrentState()
-            self.dqn_object.memory.store(state=state, action=action, nextState=nextState, reward=reward)
+            self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
 
     
     def getVal(self):
         return len(self.queue)
-            

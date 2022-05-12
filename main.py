@@ -66,7 +66,7 @@ def train(foldername,graphics=False,):
 
         for agent in Agents:                    # update the target net after update_frequency steps
             if step_cnt % update_frequency == 0 and step_cnt!=0:
-                    agent.dqn_agent.update_target_net()
+                    agent.dqn_object.update_target_net()
 
         for time in range(tot_time):
             ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
@@ -79,18 +79,18 @@ def train(foldername,graphics=False,):
 
             if graphics:
                 map_.renderMap()
-
             
         
         step_cnt += 1
         
         for agent in Agents:
-            agent.dqn_agent.updateEpsilon()
+            agent.dqn_object.updateEpsilon()
         
 
         if(episode% save_frequency == 0):
             for agent in Agents:
-                agent.dqn_agent.save_model('{}/dqn_model/agent at - {}'.format(foldername,agent.getPosition()))
+                agent.dqn_object.saveModel('{}/dqn_model/agent at - {}'.format(foldername,agent.getPosition()))
+#                agent.dqn_object.saveModel('dqn-model')
 
 
 
@@ -149,7 +149,8 @@ if __name__ ==  '__main__':
 
 
         os.makedirs("model_parameters", exist_ok=True)
-        train("model_parameters")
+        fillMemory()
+        train("model_parameters",True)
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 
