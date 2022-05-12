@@ -8,8 +8,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from dqn_net import DQNNet
-from replay_memory import ReplayMemory
+from .dqn_net import DQNNet
+from .replay_memory import ReplayMemory
 
 from configparser import ConfigParser
   

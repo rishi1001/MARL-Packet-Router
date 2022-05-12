@@ -1,11 +1,11 @@
 from distutils.command.config import config
-from src.Packets import packet
+from .Packets import packet
 
 from configparser import ConfigParser
   
 configur = ConfigParser()
 configur.read('config.ini')
-scale_base_reward = config.read(configur.get('reward','scale_base_reward'))
+scale_base_reward = configur.read(configur.get('reward','scale_base_reward'))
 
 class BaseStation():
 

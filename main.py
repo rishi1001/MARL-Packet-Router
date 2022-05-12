@@ -54,6 +54,8 @@ def fillMemory():
                         
 
 def train(foldername,graphics=False,):
+    for agent in Agents:
+        agent.initDQN(device)
 
     step_cnt = 0
 

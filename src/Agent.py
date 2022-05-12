@@ -1,6 +1,6 @@
 from src.DQN.dqn_agent import DQNAgent
 import random
-from utils import getManhattanDistance
+from .utils import getManhattanDistance
 
 from configparser import ConfigParser
   
@@ -18,8 +18,8 @@ class Agent():
         self.dqn_object = None
         self.position = (x,y)
         self.batchsize = batchsize
-        self.state_size = len(self.neighbours) + 2
-        self.action_size = len(self.neighbours) + 1
+        self.state_size = 2
+        self.action_size = 1
         self.targetBaseStation = BaseStation 
 
     def getCurrentState(self):
@@ -38,8 +38,8 @@ class Agent():
             state.append(maxTtl) #TODO : MAX_TTL??
         return state
 
-    def initDQN(self):
-        self.dqn_object = DQNAgent(self, self.state_size, self.action_size)        # TODO add parameters here
+    def initDQN(self,device):
+        self.dqn_object = DQNAgent(self, device ,self.state_size, self.action_size)        # TODO add parameters here
 
     def pushQueue(self, packet):
         self.queue.append(packet)
@@ -67,8 +67,14 @@ class Agent():
     def getPosition(self):
         return self.position
 
-    def addNeighbour(self,neighbour: Agent):
-        self.neighbors.append(neighbour)
+                                    ## TODO why agent?
+    # def addNeighbour(self,neighbour: Agent):
+    #     self.neighbors.append(neighbour)
+
+    def addNeighbour(self,neighbour):
+        self.neighbours.append(neighbour)
+        self.action_size+=1
+        self.state_size+=1
 
     def isUAV(self):
         return True

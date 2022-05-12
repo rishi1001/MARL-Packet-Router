@@ -1,9 +1,9 @@
 #import imp
 #from pkgutil import ImpImporter
 import random
-from Agent import Agent
-from IotNodes import IotNodes
-from BaseStation import BaseStation
+from .IotNodes import IotNodes
+from .BaseStation import BaseStation
+from .Agent import Agent
 
 from configparser import ConfigParser
   
@@ -66,7 +66,7 @@ class Map():
         return self.BaseStation
     
     def getAgents(self):
-        return self.Agents
+        return self.agents
      
     def getIotNodes(self):
         return self.Iot_Nodes
@@ -92,8 +92,8 @@ class Map():
             print()
         print()
     def dummyMap(self):  ## 1*3 map
-        map_= map_=[['-' for i in range(1)] for j in range(3)]
-        map[0][0] = BaseStation(0,0)
+        map_= map_=[['-' for i in range(3)] for j in range(1)]
+        map_[0][0] = BaseStation(0,0)
         self.BaseStation = map_[0][0]
 
         agent  = Agent([], 0, 1, self.BaseStation)
@@ -106,7 +106,6 @@ class Map():
         self.Iot_Nodes.append(iot)  
 
 
-        map[0][1].addNeighbour(map[0][0])
-        map[0][2].addNeighbour(map[0][1])
+        map_[0][1].addNeighbour(map_[0][0])
+        map_[0][2].addNeighbour(map_[0][1])
 
-        

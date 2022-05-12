@@ -1,7 +1,7 @@
 import sys
 sys.path.append(".")
-from Packets import packet
-from Agent import Agent
+from .Packets import packet
+from .Agent import Agent
 import numpy as np
 from configparser import ConfigParser
   
@@ -53,7 +53,7 @@ class IotNodes():
         self.generatePacket()
         for packet in self.queue:
             packet.decrease_ttl()
-        for i in range(self.transmission_rate):
+        for i in range(self.rate):
             if self.getQueueSize() > 0:   # check if queue has any packets
                 packet = self.queue.pop(0)
                 agent=self.findNeighbour()
@@ -64,7 +64,7 @@ class IotNodes():
         return self.position
 
     def addNeighbour(self,neighbour: Agent):
-        self.neighbors.append(neighbour)
+        self.neighbours.append(neighbour)
 
     def getVal(self):               # returns the total number of packets generated
         return self.total_packets
