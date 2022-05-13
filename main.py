@@ -24,6 +24,7 @@ tot_episodes = int(configur.get('train_model','tot_episodes'))
 tot_time = int(configur.get('train_model','tot_time'))
 update_frequency = int(configur.get('train_model','update_frequency'))
 save_frequency = int(configur.get('train_model','save_frequency'))
+generate_packets_till = int(configur.get('test_model','generate_packets_till'))
 
 n = int(configur.get('map','n'))
 m = int(configur.get('map','m'))
@@ -57,7 +58,7 @@ def fillMemory():
                 node.run()
                         
 
-def train(foldername,graphics=False,):
+def train(foldername,graphics=False):
     
     step_cnt = 0
 
@@ -97,7 +98,7 @@ def train(foldername,graphics=False,):
 
 
 
-def test(env, dqn_agent, num_test_eps, seed, results_basepath, render=True):
+def test(render=True):
     """
     Function to test the agent
 
@@ -119,32 +120,58 @@ def test(env, dqn_agent, num_test_eps, seed, results_basepath, render=True):
     Returns
     ---
     none
+
+    idea: generate packets at iot till some time step
+    stop the simulation only when each packet is either dropped or reaches the base station
+    metrics: average ttl over all the packets? (indicates both latency and throughout in some sense)
+
+    #TODO can also calculate latency only on packets that reached the base station and throughput overall
     """
 
+    # reset all agents
+    map_.resetAll()
+    
+    # no need to load model here as train was previously called. so last updated model is the model to be used
+
+    # turn off exploration for agents now
+    for agent in Agents:
+            agent.dqn_object.turn_off_exploration()
+
     step_cnt = 0
-    reward_history = []
 
-    for ep in range(num_test_eps):
-        score = 0
-        done = False
-        state = env.reset()
-        while not done:
+    while True:
+        step_cnt += 1
 
-            if render:
-                env.render()
+        for agent in Agents:
+            agent.run(False)
 
-            action = dqn_agent.select_action(state)
-            next_state, reward, done, _ = env.step(action)
+        if step_cnt <= generate_packets_till:
+            for node in IotNodes:
+                node.run()
 
-            score += reward
-            state = next_state
-            step_cnt += 1
+        if render :
+            map_.renderMap()
 
-        reward_history.append(score)
-        print('Ep: {}, Score: {}'.format(ep, score))
+        # check if all iot and uavs have sent out all packets
+        end = True
+        for agent in Agents:
+            if agent.getVal() != 0:
+                end = False
+                break
+        
+        for iot in IotNodes:
+            if iot.getQueueSize() !=0:
+                end = False
+                break
+        
+        if end:
+            return 
 
-    with open('{}/test_reward_history_{}.pkl'.format(results_basepath, seed), 'wb') as f:
-        pickle.dump(reward_history, f)
+
+def meanTtl():
+    packets = map_.getBaseStation().packets_received
+    return sum([packet.get_ttl() for packet in packets])/len(packets)
+
         
 
 if __name__ ==  '__main__':
@@ -153,6 +180,8 @@ if __name__ ==  '__main__':
         os.makedirs("model_parameters", exist_ok=True)
         fillMemory()
         train("model_parameters",False)
+        test()
+        print(f'Mean ttl of all packets received by base station: {meanTtl()}')
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 

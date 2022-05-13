@@ -54,6 +54,8 @@ class DQNAgent:
         # instance of the replay buffer
         self.memory = ReplayMemory(capacity=memory_capacity)
 
+    def turn_off_exploration(self):
+        self.epsilon =  0
 
     def updateTargetNet(self):
         """

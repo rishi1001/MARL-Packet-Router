@@ -26,8 +26,8 @@ class IotNodes():
         """
         l=[]
         #print(self.rate)
-        #num_packets = np.random.randint(self.rate) # TODO : why random ?
-        for i in range(self.rate):
+        num_packets = np.random.randint(self.rate) # TODO : why random ?
+        for i in range(num_packets):
             self.queue.append(packet(self.def_ttl))
     
     
@@ -72,3 +72,11 @@ class IotNodes():
 
     def getQueueSize(self):
         return len(self.queue)
+
+    def reset(self):
+        """
+        reset everything in the agent to turn on test mode
+        """
+        self.total_packets=0
+        self.queue = []
+

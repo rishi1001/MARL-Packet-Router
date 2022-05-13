@@ -38,4 +38,11 @@ class BaseStation():
     def getVal(self):
         return self.packetRecv
 
+    def reset(self):
+        """
+        reset everything in the agent to turn on test mode
+        """
+        self.packetRecv = 0
+        self.packets_received = []
+
     

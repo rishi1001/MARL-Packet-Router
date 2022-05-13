@@ -92,7 +92,7 @@ class Agent():
     def getReward(self):                      # based on q-value 
         return agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
         
-    def run(self):
+    def run(self, train = True):
         state = self.getCurrentState()
         for packet in self.queue:  
             packet.decrease_ttl()         # ttl of packet decreases
@@ -105,18 +105,21 @@ class Agent():
         nextAction = self.nextAction(state)                ## from dqn
         nextState = self.getCurrentState()
         if topPacket.get_ttl() == 0:
-            self.trainAgent(state,nextAction,nextState,ttl_zero_reward) 
+            if train:
+                self.trainAgent(state,nextAction,nextState,ttl_zero_reward) 
             return
         
-        if  nextAction == len(self.neighbours):  
-            self.trainAgent(state,nextAction,nextState,packet_drop_reward) 
+        if  nextAction == len(self.neighbours):
+            if train:  
+                self.trainAgent(state,nextAction,nextState,packet_drop_reward) 
             return
         
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
         #TODO: reward should be based on q-value and TTL
         reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
-        self.trainAgent(state,nextAction,nextState,reward) 
+        if train:
+            self.trainAgent(state,nextAction,nextState,reward) 
 
 
     def randomRun(self):
@@ -153,3 +156,9 @@ class Agent():
     
     def getVal(self):
         return len(self.queue)
+
+    def reset(self):
+        """
+        reset everything in the agent to turn on test mode
+        """
+        self.queue = []
