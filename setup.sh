@@ -1,5 +1,6 @@
 #!/bin/bash
 
 
-pip3 install torch torchvision torchaudio
+pip install torch torchvision torchaudio
 pip install numpy
+pip install tqdm

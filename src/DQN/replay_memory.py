@@ -83,9 +83,10 @@ class ReplayMemory:
         states = torch.from_numpy(np.array(self.buffer_state)[indices_to_sample]).float().to(device)
         actions = torch.from_numpy(np.array(self.buffer_action)[indices_to_sample]).to(device)
         next_states = torch.from_numpy(np.array(self.buffer_next_state)[indices_to_sample]).float().to(device)
-        a = np.array(self.buffer_reward)[indices_to_sample]
-        a=np.vstack(a).astype(np.float)
-        rewards = torch.from_numpy(a).float().to(device)
+        rewards = torch.from_numpy(np.array(self.buffer_reward)[indices_to_sample]).float().to(device)
+        # a = np.array(self.buffer_reward)[indices_to_sample]
+        # a=np.vstack(a).astype(np.float)
+        # rewards = torch.from_numpy(a).float().to(device)
         # dones = torch.from_numpy(np.array(self.buffer_done)[indices_to_sample]).to(device)
 
         return states, actions, next_states, rewards

@@ -208,7 +208,7 @@ class DQNAgent:
             # TODO policy_net or target_net?
             q_values = self.policy_net.forward(state)
 
-        max_q_value = torch.max(q_values, dim=1)[0]
+        max_q_value = float(torch.max(q_values, dim=1)[0])
 
         return max_q_value
 

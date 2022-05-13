@@ -131,14 +131,14 @@ class Agent():
 
         action = random.randint(0,len(self.neighbours))
         if(topPacket.get_ttl() == 0):
-            reward = -1000
+            reward = ttl_zero_reward
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         
 
         
         if action == len(self.neighbours):
-            reward = -1000
+            reward = packet_drop_reward
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
         

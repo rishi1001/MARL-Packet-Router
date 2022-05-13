@@ -152,7 +152,7 @@ if __name__ ==  '__main__':
 
         os.makedirs("model_parameters", exist_ok=True)
         fillMemory()
-        train("model_parameters",True)
+        train("model_parameters",False)
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 
