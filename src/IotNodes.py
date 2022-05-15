@@ -26,7 +26,7 @@ class IotNodes():
         """
         l=[]
         #print(self.rate)
-        num_packets = np.random.randint(self.rate) # TODO : why random ?
+        num_packets = np.random.randint(low = 1,high = self.rate) # TODO : why random ?
         self.total_packets += num_packets
         for i in range(num_packets):
             self.queue.append(packet(self.def_ttl))

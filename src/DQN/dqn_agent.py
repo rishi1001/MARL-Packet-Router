@@ -156,7 +156,7 @@ class DQNAgent:
         self.policy_net.optimizer.step()
         
         # TODO: get loss from current values of q_pred and y_j
-        return loss
+        return float(loss)
         
 
     def saveModel(self, filename):
@@ -211,7 +211,7 @@ class DQNAgent:
 
         with torch.no_grad():
             # TODO policy_net or target_net?
-            q_values = self.policy_net.forward(state)
+            q_values = self.target_net.forward(state)
 
         max_q_value = float(torch.max(q_values, dim=1)[0])
 

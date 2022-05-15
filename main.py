@@ -8,6 +8,7 @@ import numpy as np
 import pickle
 from tqdm import tqdm
 import time
+import matplotlib.pyplot as plt
 
 import torch
 from src.Map import Map
@@ -32,11 +33,11 @@ p = float(configur.get('map','p'))
 
 # map
 map_ = Map(n,m,p)
-map_.generate()
+# map_.generate()
 #grid_map = map_.generate()
 
 ## Initially
-# grid_map = map_.dummyMap() 
+grid_map = map_.dummyMap() 
 
 #global variables
 IotNodes = map_.getIotNodes()
@@ -69,7 +70,7 @@ def train(foldername,graphics=False):
 
         if step_cnt % update_frequency == 0 and step_cnt!=0:
             for agent in Agents:                    # update the target net after update_frequency steps   
-                agent.dqn_object.update_target_net()
+                agent.dqn_object.updateTargetNet()
 
         for time in range(tot_time):
             ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
@@ -85,10 +86,13 @@ def train(foldername,graphics=False):
             
         
         step_cnt += 1
-        
+        print("Episode Num : ", episode)
         for agent in Agents:
             agent.dqn_object.updateEpsilon()
             agent.saveLoss()
+            print("Loss :", agent.latest_loss)
+
+        map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
         
 
         if(episode% save_frequency == 0):
@@ -163,6 +167,16 @@ def meanTtl():
     packets = map_.getBaseStation().packets_received
     return sum([packet.get_ttl() for packet in packets])/len(packets)
 
+def generatePlot():
+    os.makedirs("Plots", exist_ok=True)
+    for agent in Agents:
+        loss = agent.getLoss()
+        epi_list = list(range(1,len(loss)+1))
+        plt.plot(epi_list, loss, color ='orange', label ='Agent Loss')
+        plt.savefig('./{}/agent_at_{}.png'.format('Plots',agent.getPosition()))
+
+
+
         
 
 if __name__ ==  '__main__':
@@ -172,7 +186,8 @@ if __name__ ==  '__main__':
         fillMemory()
         train("model_parameters",False)
         test()
-        print('Mean ttl of all packets received by base station: {meanTtl()}')
+        print('Mean ttl of all packets received by base station: ',meanTtl())
+        generatePlot()
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 

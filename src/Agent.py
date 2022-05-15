@@ -67,7 +67,7 @@ class Agent():
         self.losses.append(self.latest_loss)
 
     def getLoss(self):  
-        return self.latest_loss
+        return self.losses
 
     def acceptPacket(self,packet):
         ## TODO add queue size 
@@ -111,6 +111,11 @@ class Agent():
 
         
         nextAction = self.nextAction(state)                ## from dqn
+
+        if not train:
+            print("States : ", state)
+            print("Next Action - ", nextAction)
+
         nextState = self.getCurrentState()
         if topPacket.get_ttl() == 0:
             if train:
