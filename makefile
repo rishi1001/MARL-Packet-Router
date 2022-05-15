@@ -9,5 +9,5 @@ setup:
 	@pip install matplotlib
 
 clean:
- 	@echo "Cleaning up..."
+	@echo "Cleaning up..."
 	rm -r Plots
