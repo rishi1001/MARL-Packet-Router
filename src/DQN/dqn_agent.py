@@ -155,6 +155,9 @@ class DQNAgent:
         loss.backward()
         self.policy_net.optimizer.step()
         
+        # TODO: get loss from current values of q_pred and y_j
+        return loss
+        
 
     def saveModel(self, filename):
         """

@@ -88,6 +88,7 @@ def train(foldername,graphics=False):
         
         for agent in Agents:
             agent.dqn_object.updateEpsilon()
+            agent.saveLoss()
         
 
         if(episode% save_frequency == 0):
@@ -104,16 +105,6 @@ def test(render=True):
 
     Parameters
     ---
-    env: gym.Env
-        Instance of the environment used for training
-    dqn_agent: DQNAgent
-        Agent to be trained
-    num_test_eps: int
-        Number of episodes of testing to be performed
-    seed: int
-        Value of the seed used for testing
-    results_basepath: str
-        Location where models and other result files are saved
     render: bool
         Whether to create a pop-up window display the interaction of the agent with the environment
 
@@ -181,7 +172,7 @@ if __name__ ==  '__main__':
         fillMemory()
         train("model_parameters",False)
         test()
-        print(f'Mean ttl of all packets received by base station: {meanTtl()}')
+        print('Mean ttl of all packets received by base station: {meanTtl()}')
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 

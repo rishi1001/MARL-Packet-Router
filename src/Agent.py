@@ -22,6 +22,8 @@ class Agent():
         self.state_size = 2
         self.action_size = 1
         self.targetBaseStation = BaseStation 
+        self.latest_loss = 0
+        self.losses = []
 
     def getCurrentState(self):
         """
@@ -59,7 +61,13 @@ class Agent():
         # use dqn to train this
 
         self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
-        self.dqn_object.learn(batchsize=self.batchsize)
+        self.latest_loss = self.dqn_object.learn(batchsize=self.batchsize)
+
+    def saveLoss(self):
+        self.losses.append(self.latest_loss)
+
+    def getLoss(self):  
+        return self.latest_loss
 
     def acceptPacket(self,packet):
         ## TODO add queue size 
