@@ -24,6 +24,46 @@ class Map():
         self.Iot_Nodes = []
         self.BaseStation = None
 
+    def read(self):
+        file  = open('./Maps/map_{}_{}.txt'.format(self.n,self.m),'r') 
+        map_=[['-' for i in range(self.m)] for j in range(self.n)]
+        i=0
+        j=0
+        for line in file:
+            j=0
+            for char in line:
+                if char==' ':
+                    continue
+                if char=='B':
+                    map_[i][j]= BaseStation(i,j)
+                    self.BaseStation = map_[i][j]
+                elif char == 'A':
+                    agent  = Agent([], i, j, self.BaseStation)
+                    map_[i][j]= agent
+                    self.agents.append(agent)
+                elif char == 'I':
+                    rate=  random.randint(0,10) 
+                    iot = IotNodes(rate, defTtl,i,j)
+                    map_[i][j]= iot
+                    self.Iot_Nodes.append(iot)
+                j+=1
+            i+=1
+        for i in range(self.n):
+                for j in range(self.m):
+                    if map_[i][j].isBase():
+                        continue
+                    # if map_[i,j].isUAV: # commenting this because IoT nodes also need neighbours
+                    if i>0 and (map_[i-1][j].isUAV() or map_[i-1][j].isBase()):
+                        map_[i][j].addNeighbour(map_[i-1][j])
+                    if j>0 and (map_[i][j-1].isUAV() or map_[i][j-1].isBase()):
+                        map_[i][j].addNeighbour(map_[i][j-1])
+                    if i<self.n-1 and (map_[i+1][j].isUAV() or map_[i+1][j].isBase()):
+                        map_[i][j].addNeighbour(map_[i+1][j])
+                    if j<self.m-1 and (map_[i][j+1].isUAV() or map_[i][j+1].isBase()):
+                        map_[i][j].addNeighbour(map_[i][j+1])
+
+        self.map = map_ 
+
     def generate(self):
         map_=[['-' for i in range(self.m)] for j in range(self.n)]
         x=random.randint(0,self.n-1)
@@ -124,3 +164,13 @@ class Map():
         for i in range(self.n):
             for j in range(self.m):
                 self.map[i][j].reset()
+
+    def loadModel(self,foldername):
+        for i in range(self.n):
+            for j in range(self.m):
+                if(self.map[i][j].isUAV()):
+                    self.map[i][j].loadModel("./{}/agent_at_{}".format(foldername,(i,j)))
+   
+    def initModels (self,device):
+        for agent in self.agents:
+            agent.initDQN(device)

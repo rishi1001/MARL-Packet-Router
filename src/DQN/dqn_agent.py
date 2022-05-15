@@ -189,7 +189,7 @@ class DQNAgent:
         none
         """
 
-        self.policy_net.load_model(filename=filename, device=self.device)
+        self.policy_net.loadModel(filename=filename, device=self.device)
 
     def getQValue(self, state):
         """

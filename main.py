@@ -37,7 +37,9 @@ map_ = Map(n,m,p)
 #grid_map = map_.generate()
 
 ## Initially
-grid_map = map_.dummyMap() 
+#grid_map = map_.dummyMap() 
+map_.read()
+
 
 #global variables
 IotNodes = map_.getIotNodes()
@@ -46,8 +48,6 @@ Agents = map_.getAgents()
 
 
 def fillMemory():
-    for agent in Agents:
-        agent.initDQN(device)
 
     for _ in range(num_memory_fill_eps):
         
@@ -97,7 +97,7 @@ def train(foldername,graphics=False):
 
         if(episode% save_frequency == 0):
             for agent in Agents:
-                agent.dqn_object.saveModel('./{}/dqn_model/agent_at_{}'.format(foldername,agent.getPosition()))
+                agent.dqn_object.saveModel('./{}/agent_at_{}'.format(foldername,agent.getPosition()))
 #                agent.dqn_object.saveModel('dqn-model')
 
 
@@ -183,11 +183,17 @@ if __name__ ==  '__main__':
 
 
         os.makedirs("model_parameters", exist_ok=True)
-        fillMemory()
-        train("model_parameters",False)
+        map_.initModels(device)
+        # fillMemory()
+        # train("model_parameters",False)
+        if configur.get('train_model','train') == 'True':
+            fillMemory()
+            train("model_parameters",False)
+        map_.loadModel("model_parameters")
         test()
         print('Mean ttl of all packets received by base station: ',meanTtl())
         generatePlot()
+
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
 

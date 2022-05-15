@@ -44,6 +44,9 @@ class Agent():
     def initDQN(self,device):
         self.dqn_object = DQNAgent(device ,self.state_size, self.action_size)        # TODO add parameters here
 
+    def loadModel(self,filename):
+        self.dqn_object.loadModel(filename)
+
     def pushQueue(self, packet):
         self.queue.append(packet)
         return True                            ## return true if packet is pushed for ensuring queue is not full
