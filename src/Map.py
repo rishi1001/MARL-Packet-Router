@@ -42,7 +42,7 @@ class Map():
                     map_[i][j]= agent
                     self.agents.append(agent)
                 elif char == 'I':
-                    rate=  random.randint(0,10) 
+                    rate=  random.randint(2,10) 
                     iot = IotNodes(rate, defTtl,i,j)
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)

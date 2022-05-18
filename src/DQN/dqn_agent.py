@@ -144,7 +144,7 @@ class DQNAgent:
         q_pred = self.policy_net.forward(states).gather(1, actions.view(-1, 1)) 
         
         #calculate target q-values, such that yj = rj + q(s', a'), but if current state is a terminal state, then yj = rj
-        q_target = self.target_net.forward(next_states).max(dim=1).values # because max returns data structure with values and indices
+        q_target = self.policy_net.forward(next_states).max(dim=1).values # because max returns data structure with values and indices
         # q_target[dones] = 0.0 # setting Q(s',a') to 0 when the current state is a terminal state
         y_j = rewards + (self.discount * q_target)
         y_j = y_j.view(-1, 1)
