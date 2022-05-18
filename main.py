@@ -86,11 +86,11 @@ def train(foldername,graphics=False):
             
         
         step_cnt += 1
-        print("Episode Num : ", episode)
+        # print("Episode Num : ", episode)
         for agent in Agents:
             agent.dqn_object.updateEpsilon()
             agent.saveLoss()
-            print("Loss :", agent.latest_loss)
+            # print("Loss :", agent.latest_loss) 
 
         map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
         
@@ -189,10 +189,12 @@ if __name__ ==  '__main__':
         if configur.get('train_model','train') == 'True':
             fillMemory()
             train("model_parameters",False)
+            generatePlot()
         map_.loadModel("model_parameters")
         test()
+        
         print('Mean ttl of all packets received by base station: ',meanTtl())
-        generatePlot()
+        
 
     # else:
     #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
