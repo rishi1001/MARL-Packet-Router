@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import torch
 from src.Map import Map
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
+print(device)
 from configparser import ConfigParser
   
 configur = ConfigParser()
@@ -168,7 +168,7 @@ def meanTtl():
     return sum([packet.get_ttl() for packet in packets])/len(packets)
 
 def generatePlot():
-    os.makedirs("Plots", exist_ok=True)
+    os.makedirs("Plots_{}_{}".format(n,m), exist_ok=True)
     for agent in Agents:
         loss = agent.getLoss()
         epi_list = list(range(1,len(loss)+1))

@@ -6,3 +6,7 @@
 3. source env/bin/activate
 4. make setup
 5. make run
+
+## RUN
+1 make copy
+2 qsub pbsbatch.sh on hpc

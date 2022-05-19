@@ -9,7 +9,7 @@ configur.read('config.ini')
 maxTtl = int(configur.get('packet','maxTtl')) 
 packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
 ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
-agent_to_agent_scale = int(configur.get('reward','agent_to_agent_scale'))
+agent_to_agent_scale = float(configur.get('reward','agent_to_agent_scale'))
 
 # class agent
 class Agent():
@@ -100,9 +100,11 @@ class Agent():
     def isBaseStation(self):
         return False
 
-    def getReward(self):                      # based on q-value 
-        return agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
-        
+    def getReward(self):             
+        reward = agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
+        print("postion {},reward {}".format(self.getPosition(), reward))         # based on q-value 
+        return reward
+
     def run(self, train = True):
         state = self.getCurrentState()
         for packet in self.queue:  
@@ -116,6 +118,7 @@ class Agent():
         nextAction = self.nextAction(state)                ## from dqn
 
         if not train:
+            print("Position : ",self.getPosition())
             print("States : ", state)
             print("Next Action - ", nextAction)
 

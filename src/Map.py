@@ -42,7 +42,8 @@ class Map():
                     map_[i][j]= agent
                     self.agents.append(agent)
                 elif char == 'I':
-                    rate=  random.randint(2,10) 
+                    #rate=  random.randint(2,10) 
+                    rate = 10 # with uniform random generation of packets, avergae will be 7 (<transmission rate)
                     iot = IotNodes(rate, defTtl,i,j)
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)
@@ -81,7 +82,7 @@ class Map():
                     self.agents.append(agent)
                 else:
                     # rate=  random.randint(0,10) # TODO: add actual rate
-                    rate = 14 # with uniform random generation of packets, avergae will be 7 (<transmission rate)
+                    rate = 10 # with uniform random generation of packets, avergae will be 7 (<transmission rate)
                     iot = IotNodes(rate, defTtl,i,j) 
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)  
@@ -150,7 +151,8 @@ class Map():
         map_[0][1]= agent
         self.agents.append(agent)
 
-        rate=  random.randint(0,10) # TODO: add actual rate
+        #rate=  random.randint(0,10) # TODO: add actual rate
+        rate = 10
         iot = IotNodes(rate, defTtl,0,2) 
         map_[0][2]= iot
         self.Iot_Nodes.append(iot)  
