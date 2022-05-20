@@ -63,7 +63,7 @@ def train(foldername,graphics=False):
     
     step_cnt = 0
 
-    for episode in tqdm(range(tot_episodes)):
+    for episode in tqdm(range(tot_episodes), position=0, leave=True):
 
         # if graphics:
             # print("Episode Number : ", episode)
@@ -165,6 +165,8 @@ def test(render=True):
 
 def meanTtl():
     packets = map_.getBaseStation().packets_received
+    if len(packets)==0:
+        return -1
     return sum([packet.get_ttl() for packet in packets])/len(packets)
 
 def generatePlot():
@@ -173,7 +175,7 @@ def generatePlot():
         loss = agent.getLoss()
         epi_list = list(range(1,len(loss)+1))
         plt.plot(epi_list, loss, color ='orange', label ='Agent Loss')
-        plt.savefig('./{}/agent_at_{}.png'.format('Plots',agent.getPosition()))
+        plt.savefig('./{}/agent_at_{}.png'.format("Plots_{}_{}".format(n,m),agent.getPosition()))
 
 
 

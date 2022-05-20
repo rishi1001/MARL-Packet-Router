@@ -123,7 +123,7 @@ class Agent():
             print("Next Action - ", nextAction)
 
         nextState = self.getCurrentState()
-        if topPacket.get_ttl() == 0:
+        if topPacket.get_ttl() <= 0:
             if train:
                 self.trainAgent(state,nextAction,nextState,ttl_zero_reward) 
             return
@@ -136,7 +136,9 @@ class Agent():
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
         #TODO: reward should be based on q-value and TTL
-        reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
+        #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
+        reward = self.neighbours[nextAction].getReward()
+        
         if train:
             self.trainAgent(state,nextAction,nextState,reward) 
 
@@ -152,7 +154,7 @@ class Agent():
             return # if the queue is already empty, nothing to do
 
         action = random.randint(0,len(self.neighbours))
-        if(topPacket.get_ttl() == 0):
+        if(topPacket.get_ttl() <= 0):
             reward = ttl_zero_reward
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
@@ -168,7 +170,8 @@ class Agent():
             self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
             #TODO: reward should be based on q-value and TTL
             
-            reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
+            #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
+            reward = self.neighbours[action].getReward()
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
 

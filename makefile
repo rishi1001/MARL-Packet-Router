@@ -1,5 +1,9 @@
-make run_hpc:
+run_hpc:
 	qsub pbsbatch.sh
+
+watch:
+	watch qstat -u $USER
+
 
 run: 
 	python3 main.py
