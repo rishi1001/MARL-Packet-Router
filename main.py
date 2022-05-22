@@ -17,7 +17,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 from configparser import ConfigParser
   
-
+torch.cuda.empty_cache()
 folder_name = input('Enter folder name : ')
 
 configur = ConfigParser()
