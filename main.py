@@ -12,10 +12,14 @@ import matplotlib.pyplot as plt
 
 import torch
 from src.Map import Map
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 from configparser import ConfigParser
   
+
+folder_name = input('Enter folder name : ')
+
 configur = ConfigParser()
 print (configur.read('config.ini'))
 
@@ -169,13 +173,13 @@ def meanTtl():
         return -1
     return sum([packet.get_ttl() for packet in packets])/len(packets)
 
-def generatePlot():
-    os.makedirs("Plots_{}_{}".format(n,m), exist_ok=True)
+def generatePlot(folder_name):
+    os.makedirs("{}/Plots".format(folder_name), exist_ok=True)
     for agent in Agents:
         loss = agent.getLoss()
         epi_list = list(range(1,len(loss)+1))
         plt.plot(epi_list, loss, color ='orange', label ='Agent Loss')
-        plt.savefig('./{}/agent_at_{}.png'.format("Plots_{}_{}".format(n,m),agent.getPosition()))
+        plt.savefig('{}/Plots/agent_at_{}.png'.format(folder_name,agent.getPosition()))
 
 
 
@@ -183,17 +187,17 @@ def generatePlot():
 
 if __name__ ==  '__main__':
 
-
-        os.makedirs("model_parameters", exist_ok=True)
+        
+        os.makedirs("{}/model_parameters".format(folder_name), exist_ok=True)
         map_.initModels(device)
         # fillMemory()
         # train("model_parameters",False)
         if configur.get('train_model','train') == 'True':
             fillMemory()
-            train("model_parameters",False)
-            generatePlot()
-        map_.loadModel("model_parameters")
+            train("{}/model_parameters".format(folder_name),False)
+        map_.loadModel("{}/model_parameters".format(folder_name))
         test()
+        generatePlot(folder_name)
         
         print('Mean ttl of all packets received by base station: ',meanTtl())
         

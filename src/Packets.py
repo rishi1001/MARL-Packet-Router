@@ -1,7 +1,5 @@
-from configparser import ConfigParser
-  
-configur = ConfigParser()
-configur.read('config.ini')
+
+
 
 class packet():
 

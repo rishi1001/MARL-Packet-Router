@@ -1,15 +1,18 @@
 from src.DQN.dqn_agent import DQNAgent
 import random
 from .utils import getManhattanDistance
+import math
 
 from configparser import ConfigParser
   
 configur = ConfigParser()
 configur.read('config.ini')
 maxTtl = int(configur.get('packet','maxTtl')) 
+defaultTtl = int(configur.get('packet','def_ttl')) 
 packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
 ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
 agent_to_agent_scale = float(configur.get('reward','agent_to_agent_scale'))
+scaling_type = configur.get('scaling_factor','scaling_type')
 
 # class agent
 class Agent():
@@ -56,6 +59,11 @@ class Agent():
             return -1
         return self.queue.pop(0)
 
+    def getTopPacket(self):
+        if len(self.queue) == 0:
+            return -1
+        return self.queue[-1]
+
     def nextAction(self,state):
         # use dqn to find this
         return self.dqn_object.selectAction(state)
@@ -100,10 +108,17 @@ class Agent():
     def isBaseStation(self):
         return False
 
-    def getReward(self):             
+    def getReward(self):       
+        top_packet_ttl = self.getTopPacket().get_ttl()    
         reward = agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
-        print("postion {},reward {}".format(self.getPosition(), reward))         # based on q-value 
-        return reward
+        if scaling_type == 'square':
+            scaled_reward = reward*top_packet_ttl*top_packet_ttl
+        elif scaling_type == 'exponential':
+            scaled_reward = reward*math.exp(top_packet_ttl)     
+        else:
+            scaled_reward = reward
+        print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
+        return scaled_reward
 
     def run(self, train = True):
         state = self.getCurrentState()
