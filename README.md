@@ -8,5 +8,7 @@
 5. make run
 
 ## RUN
-1 make copy
-2 qsub pbsbatch.sh on hpc
+1 make a folder
+2 copy config file to that folder
+3 make run folder=<folder name>
+4 TADA!!!

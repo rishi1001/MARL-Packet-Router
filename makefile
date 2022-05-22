@@ -1,3 +1,7 @@
+
+run: 
+	python3 main.py $(folder)
+
 run_hpc:
 	qsub pbsbatch.sh
 
@@ -5,8 +9,6 @@ watch:
 	watch qstat -u $USER
 
 
-run: 
-	python3 main.py
 
 setup:
 	@echo "Setting up..."
@@ -19,11 +21,11 @@ copy:
 	@echo "Copying files..."
 	@read -p "Enter User Name:" user;\
 	name=$$user@hpc.iitd.ac.in; \
-	scp -r ./Maps $$name:./MARL-Packet-Router/ \
-	scp -r ./src $$name:./MARL-Packet-Router/  \
-	scp -r ./model_parameters $$name:./MARL-Packet-Router/  \
-	scp -r ./Plots $$name:./MARL-Packet-Router/   \
-	scp config.ini main.py makefile pbsbatch.sh $$name:./MARL-Packet-Router/
+	scp -r ./Maps $$name:./marl \
+	scp -r ./src $$name:./marl  \
+	scp -r ./model_parameters $$name:.marl  \
+	scp -r ./Plots $$name:.marl   \
+	scp config.ini main.py makefile pbsbatch.sh $$name:.marl
 
 
 clean:

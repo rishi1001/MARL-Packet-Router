@@ -6,13 +6,16 @@ import math
 from configparser import ConfigParser
   
 configur = ConfigParser()
-configur.read('config.ini')
+import builtins
+configur.read(builtins.current_filename)
+
+#configur.read('config.ini')
 maxTtl = int(configur.get('packet','maxTtl')) 
 defaultTtl = int(configur.get('packet','def_ttl')) 
 packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
 ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
 agent_to_agent_scale = float(configur.get('reward','agent_to_agent_scale'))
-scaling_type = configur.get('scaling_factor','scaling_type')
+scaling_type = configur.get('scaling_factor','type')
 
 # class agent
 class Agent():

@@ -8,7 +8,11 @@ from .Agent import Agent
 from configparser import ConfigParser
   
 configur = ConfigParser()
-configur.read('config.ini')
+
+import builtins
+configur.read(builtins.current_filename)
+print(builtins.current_filename)
+#configur.read('config.ini')
 
 defTtl = int(configur.get('packet','def_ttl'))
 # generate map of size n*m 

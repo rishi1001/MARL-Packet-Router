@@ -10,7 +10,10 @@ import torch
 from configparser import ConfigParser
   
 configur = ConfigParser()
-configur.read('config.ini')
+import builtins
+configur.read(builtins.current_filename)
+
+# configur.read('config.ini')
 
 class ReplayMemory:
     """

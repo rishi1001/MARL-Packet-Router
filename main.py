@@ -3,25 +3,29 @@ Script containing the training and testing loop for DQNAgent
 """
 
 import os
-import argparse
+import sys
 import numpy as np
-import pickle
 from tqdm import tqdm
-import time
 import matplotlib.pyplot as plt
 
 import torch
-from src.Map import Map
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 from configparser import ConfigParser
   
 torch.cuda.empty_cache()
-folder_name = input('Enter folder name : ')
+if(len(sys.argv) <= 1): 
+    print("Please provide the config file folder name")
+    exit()
 
+
+folder_name = sys.argv[1]
+
+import builtins
+builtins.current_filename = "{}/config.ini".format(folder_name)
 configur = ConfigParser()
-print (configur.read('config.ini'))
+configur.read(builtins.current_filename)
 
 
 num_memory_fill_eps = int(configur.get('train_model','num_memory_fill_eps'))
@@ -36,6 +40,7 @@ m = int(configur.get('map','m'))
 p = float(configur.get('map','p'))
 
 # map
+from src.Map import Map
 map_ = Map(n,m,p)
 # map_.generate()
 #grid_map = map_.generate()
