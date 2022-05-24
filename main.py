@@ -2,6 +2,9 @@
 Script containing the training and testing loop for DQNAgent
 """
 
+# TODO : Change when to save to model( after sum of losses is minumum)
+# TODO : Instead of fixed in train, make to run for fixed amount of packets are generated ? Try this
+
 import os
 import sys
 import numpy as np
@@ -197,6 +200,7 @@ def generatePlot(folder_name):
         epi_list = list(range(1,len(loss)+1))
         plt.plot(epi_list, loss, color ='orange', label ='Agent Loss')
         plt.savefig('{}/Plots/agent_at_{}.png'.format(folder_name,agent.getPosition()))
+        plt.close()
 
 
 
