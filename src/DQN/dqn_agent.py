@@ -111,7 +111,7 @@ class DQNAgent:
         none
         """
 
-        if random.random() <= self.epsilon: # amount of exploration reduces with the epsilon value
+        if random.random() < self.epsilon: # amount of exploration reduces with the epsilon value
             return random.randrange(self.action_size)
 
         if not torch.is_tensor(state):

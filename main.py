@@ -61,11 +61,17 @@ def fillMemory():
     for _ in range(num_memory_fill_eps):
         
         for time in range(tot_time):
-            for agent in Agents:
-                agent.randomRun()
 
             for node in IotNodes:
                 node.run()
+
+            for agent in Agents:
+                agent.randomRun()
+
+            for agent in Agents:
+                agent.update_state()
+
+        map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
                         
 
 def train(foldername,graphics=False):
@@ -82,13 +88,16 @@ def train(foldername,graphics=False):
                 agent.dqn_object.updateTargetNet()
 
         for time in range(tot_time):
+
+            for node in IotNodes:
+                node.run()
+
             ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
             for agent in Agents:
                 agent.run()
 
-
-            for node in IotNodes:
-                node.run()
+            for agent in Agents:
+                agent.update_state()
 
             if graphics and episode == tot_episodes-1 :
                 map_.renderMap()
@@ -146,12 +155,15 @@ def test(render=True):
     while True:
         step_cnt += 1
 
-        for agent in Agents:
-            agent.run(False)
-
         if step_cnt <= generate_packets_till:
             for node in IotNodes:
                 node.run()
+
+        for agent in Agents:
+            agent.run(False)
+
+        for agent in Agents:
+            agent.update_state()
 
         if render :
             map_.renderMap()
@@ -205,10 +217,4 @@ if __name__ ==  '__main__':
         generatePlot(folder_name)
         
         print('Mean ttl of all packets received by base station: ',meanTtl())
-        
-
-    # else:
-    #         dqn_agent.load_model('{}/dqn_model'.format(args.results_folder))
-
-    #         test(env=env, dqn_agent=dqn_agent, num_test_eps=args.num_test_eps, seed=seed, results_basepath=args.results_folder, render=args.render)
 

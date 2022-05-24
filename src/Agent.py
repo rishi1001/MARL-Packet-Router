@@ -31,6 +31,7 @@ class Agent():
         self.targetBaseStation = BaseStation 
         self.latest_loss = 0
         self.losses = []
+        self.latest_queue = []
 
     def getCurrentState(self):
         """
@@ -64,9 +65,9 @@ class Agent():
         return self.queue.pop(0)
 
     def getTopPacket(self):
-        if len(self.queue) == 0:
+        if len(self.latest_queue) == 0:
             return -1
-        return self.queue[-1]
+        return self.latest_queue[-1]
 
     def nextAction(self,state):
         # use dqn to find this
@@ -86,7 +87,7 @@ class Agent():
 
     def acceptPacket(self,packet):
         ## TODO add queue size 
-        self.pushQueue(packet)
+        self.latest_queue.append(packet)
 
     def getPosition(self):
         return self.position
@@ -137,7 +138,12 @@ class Agent():
         if not train:
             print("Position : ",self.getPosition())
             print("States : ", state)
-            print("Next Action - ", nextAction)
+            print("TTL : ", topPacket.get_ttl())
+            if(nextAction == len(self.neighbours)):
+                print("Packet dropped")
+            else:
+                print("Packet forwarded to neighbour : ",self.neighbours[nextAction].getPosition())
+            print("Q-Value : ", self.dqn_object.getQValue(state))
 
         nextState = self.getCurrentState()
         if topPacket.get_ttl() <= 0:
@@ -206,3 +212,8 @@ class Agent():
         reset everything in the agent to turn on test mode
         """
         self.queue = []
+
+    def update_state(self):
+        for packets in self.latest_queue:
+            self.queue.append(packets)
+        self.latest_queue = []
