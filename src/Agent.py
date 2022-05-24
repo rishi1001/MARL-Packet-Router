@@ -16,6 +16,7 @@ packet_drop_reward = int(configur.get('reward','packet_drop_reward'))
 ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
 agent_to_agent_scale = float(configur.get('reward','agent_to_agent_scale'))
 scaling_type = configur.get('scaling_factor','type')
+include_distance = configur.getboolean('reward','include_distance')
 
 # class agent
 class Agent():
@@ -25,7 +26,7 @@ class Agent():
         self.dqn_object = None
         self.position = (x,y)
         self.batchsize = batchsize
-        self.state_size = 2
+        self.state_size = 1  ## TODO : Removed head packet ttl from state
         self.action_size = 1
         self.targetBaseStation = BaseStation 
         self.latest_loss = 0
@@ -41,14 +42,14 @@ class Agent():
                 state.append(len(neighbour.queue))
             else:
                 state.append(0)   # base station is always given empty queue, denoting availability TODO: think
-        if len(self.queue)>0:
-            state.append(self.queue[0].get_ttl())
-        else:
-            state.append(maxTtl) #TODO : MAX_TTL??
+        # if len(self.queue)>0:
+        #     state.append(self.queue[0].get_ttl())
+        # else:
+        #     state.append(maxTtl) #: MAX_TTL??
         return state
 
     def initDQN(self,device):
-        self.dqn_object = DQNAgent(device ,self.state_size, self.action_size)        # TODO add parameters here
+        self.dqn_object = DQNAgent(device ,self.state_size, self.action_size)        #  add parameters here
 
     def loadModel(self,filename):
         self.dqn_object.loadModel(filename)
@@ -90,10 +91,6 @@ class Agent():
     def getPosition(self):
         return self.position
 
-                                    ## TODO why agent?
-    # def addNeighbour(self,neighbour: Agent):
-    #     self.neighbors.append(neighbour)
-
     def addNeighbour(self,neighbour):
         self.neighbours.append(neighbour)
         self.action_size+=1
@@ -115,9 +112,11 @@ class Agent():
         top_packet_ttl = self.getTopPacket().get_ttl()    
         reward = agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 
         if scaling_type == 'square':
-            scaled_reward = reward*top_packet_ttl*top_packet_ttl
+            scaled_reward = reward*((top_packet_ttl/defaultTtl)**2)
         elif scaling_type == 'exponential':
-            scaled_reward = reward*math.exp(top_packet_ttl)     
+            scaled_reward = reward*math.exp(top_packet_ttl-defaultTtl)     
+        elif scaling_type == 'fraction': 
+            scaled_reward = reward*(top_packet_ttl/defaultTtl)
         else:
             scaled_reward = reward
         print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
@@ -156,7 +155,9 @@ class Agent():
         #TODO: reward should be based on q-value and TTL
         #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
         reward = self.neighbours[nextAction].getReward()
-        
+        if(include_distance):
+            reward *= 1/getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition())
+
         if train:
             self.trainAgent(state,nextAction,nextState,reward) 
 
@@ -190,6 +191,9 @@ class Agent():
             
             #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
             reward = self.neighbours[action].getReward()
+            if(include_distance):
+                reward *= 1/getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition())
+
             nextState = self.getCurrentState()
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
 
