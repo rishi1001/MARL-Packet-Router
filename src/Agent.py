@@ -20,7 +20,7 @@ include_distance = configur.getboolean('reward','include_distance')
 
 # class agent
 class Agent():
-    def __init__(self,neighbours, x,y,BaseStation, batchsize = 64):    
+    def __init__(self,neighbours, x,y,BaseStation, model_path = "", batchsize = 64):    
         self.queue = []
         self.neighbours = neighbours
         self.dqn_object = None
@@ -32,6 +32,7 @@ class Agent():
         self.latest_loss = 0
         self.losses = []
         self.latest_queue = []
+        self.model_path = model_path  # path to where model would be stored
 
     def getCurrentState(self):
         """
@@ -50,7 +51,7 @@ class Agent():
         return state
 
     def initDQN(self,device):
-        self.dqn_object = DQNAgent(device ,self.state_size, self.action_size)        #  add parameters here
+        self.dqn_object = DQNAgent(device ,self.state_size, self.action_size, model_path = self.model_path)        #  add parameters here
 
     def loadModel(self,filename):
         self.dqn_object.loadModel(filename)
@@ -120,7 +121,7 @@ class Agent():
             scaled_reward = reward*(top_packet_ttl/defaultTtl)
         else:
             scaled_reward = reward
-        print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
+        # print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
         return scaled_reward
 
     def run(self, train = True):
@@ -158,6 +159,8 @@ class Agent():
         
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
+        nextState[nextAction+1] += 1    # one packet transferred to latest queue which was not counted in current state earlier
+
         #TODO: reward should be based on q-value and TTL
         #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
         reward = self.neighbours[nextAction].getReward()
@@ -193,6 +196,7 @@ class Agent():
         
         else:    
             self.neighbours[action].acceptPacket(topPacket)  ## push to next agent
+            
             #TODO: reward should be based on q-value and TTL
             
             #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
@@ -201,6 +205,8 @@ class Agent():
                 reward *= 1/getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition())
 
             nextState = self.getCurrentState()
+            nextState[action+1] += 1    # one packet transferred to latest queue which was not counted in current state earlier
+
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
 
     
@@ -216,4 +222,4 @@ class Agent():
     def update_state(self):
         for packets in self.latest_queue:
             self.queue.append(packets)
-        self.latest_queue = []
+        self.latest_queue= []

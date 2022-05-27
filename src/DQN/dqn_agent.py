@@ -12,6 +12,7 @@ from .dqn_net import DQNNet
 from .replay_memory import ReplayMemory
 
 from configparser import ConfigParser
+import sys
   
 configur = ConfigParser()
 import builtins
@@ -24,7 +25,7 @@ class DQNAgent:
     """
     Class that defines the functions required for training the DQN agent
     """
-    def __init__(self, device, state_size, action_size, 
+    def __init__(self, device, state_size, action_size, model_path = "",
                     discount=0.99, 
                     eps_max=1.0, 
                     eps_min=0.01, 
@@ -34,6 +35,7 @@ class DQNAgent:
                     train_mode=True):
 
         self.device = device
+        self.min_loss = sys.maxsize
 
         # for epsilon-greedy exploration strategy
         self.epsilon = eps_max
@@ -56,6 +58,7 @@ class DQNAgent:
 
         # instance of the replay buffer
         self.memory = ReplayMemory(capacity=memory_capacity)
+        self.model_path = model_path  # path to where model would be stored
 
     def turn_off_exploration(self):
         self.epsilon =  0
@@ -156,6 +159,9 @@ class DQNAgent:
         # calculate the loss as the mean-squared error of yj and qpred
         self.policy_net.optimizer.zero_grad()
         loss = F.mse_loss(y_j, q_pred).mean()
+        if loss<self.min_loss:
+            self.min_loss = loss
+            self.saveModel(self.model_path)
         loss.backward()
         self.policy_net.optimizer.step()
         
@@ -179,7 +185,7 @@ class DQNAgent:
 
         self.policy_net.saveModel(filename)
 
-    def loadModel(self, filename):
+    def loadModel(self):
         """
         Function to load model parameters
 
@@ -193,7 +199,7 @@ class DQNAgent:
         none
         """
 
-        self.policy_net.loadModel(filename=filename, device=self.device)
+        self.policy_net.loadModel(filename=self.model_path, device=self.device)
 
     def getQValue(self, state):
         """

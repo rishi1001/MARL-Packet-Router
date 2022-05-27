@@ -44,7 +44,7 @@ p = float(configur.get('map','p'))
 
 # map
 from src.Map import Map
-map_ = Map(n,m,p)
+map_ = Map(n,m,p, folder_name)
 # map_.generate()
 #grid_map = map_.generate()
 
@@ -116,10 +116,10 @@ def train(foldername,graphics=False):
         map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
         
 
-        if(episode% save_frequency == 0):
-            for agent in Agents:
-                agent.dqn_object.saveModel('./{}/agent_at_{}'.format(foldername,agent.getPosition()))
-#                agent.dqn_object.saveModel('dqn-model')
+#         if(episode% save_frequency == 0):
+#             for agent in Agents:
+#                 agent.dqn_object.saveModel('./{}/agent_at_{}'.format(foldername,agent.getPosition()))
+# #                agent.dqn_object.saveModel('dqn-model')
 
 
 
@@ -147,7 +147,10 @@ def test(render=True):
     # reset all agents
     map_.resetAll()
     
-    # no need to load model here as train was previously called. so last updated model is the model to be used
+    # loading best models
+    for agent in Agents:
+        agent.dqn_object.loadModel()
+
 
     # turn off exploration for agents now
     for agent in Agents:
@@ -216,7 +219,7 @@ if __name__ ==  '__main__':
         if configur.get('train_model','train') == 'True':
             fillMemory()
             train("{}/model_parameters".format(folder_name),False)
-        map_.loadModel("{}/model_parameters".format(folder_name))
+        # map_.loadModel("{}/model_parameters".format(folder_name))
         test()
         generatePlot(folder_name)
         

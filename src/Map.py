@@ -14,12 +14,14 @@ configur.read(builtins.current_filename)
 print(builtins.current_filename)
 #configur.read('config.ini')
 
+foldername = ""
 defTtl = int(configur.get('packet','def_ttl'))
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell
 class Map():
 
-    def __init__(self,n,m,p):
+    def __init__(self,n,m,p, folder_name=""):
+        global foldername
         self.n=n
         self.m=m
         self.p=p
@@ -27,6 +29,7 @@ class Map():
         self.agents = []
         self.Iot_Nodes = []
         self.BaseStation = None
+        foldername = folder_name
 
     def read(self):
         file  = open('./Maps/map_{}_{}.txt'.format(self.n,self.m),'r') 
@@ -42,7 +45,7 @@ class Map():
                     map_[i][j]= BaseStation(i,j)
                     self.BaseStation = map_[i][j]
                 elif char == 'A':
-                    agent  = Agent([], i, j, self.BaseStation)
+                    agent  = Agent([], i, j, self.BaseStation, './{}/agent_at_{}'.format(foldername,(i,j)))
                     map_[i][j]= agent
                     self.agents.append(agent)
                 elif char == 'I':
@@ -81,7 +84,7 @@ class Map():
                     continue
                 prob=random.uniform(0,1)
                 if(prob<=self.p):
-                    agent  = Agent([], i, j, self.BaseStation)
+                    agent  = Agent([], i, j, self.BaseStation, './{}/agent_at_{}'.format(foldername,(i,j)))
                     map_[i][j]= agent
                     self.agents.append(agent)
                 else:
@@ -151,7 +154,7 @@ class Map():
         map_[0][0] = BaseStation(0,0)
         self.BaseStation = map_[0][0]
 
-        agent  = Agent([], 0, 1, self.BaseStation)
+        agent  = Agent([], 0, 1, self.BaseStation, './{}/agent_at_{}'.format(foldername,(0,1)))
         map_[0][1]= agent
         self.agents.append(agent)
 
