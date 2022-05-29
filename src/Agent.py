@@ -120,7 +120,7 @@ class Agent():
             scaled_reward = reward*(top_packet_ttl/defaultTtl)
         else:
             scaled_reward = reward
-        print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
+        # print("postion {},reward {}".format(self.getPosition(), scaled_reward))         # based on q-value 
         return scaled_reward
 
     def run(self, train = True):
@@ -158,6 +158,7 @@ class Agent():
         
         self.neighbours[nextAction].acceptPacket(topPacket)  ## push to next agent
         nextState = self.getCurrentState()
+        nextState[nextAction+1]+=1
         #TODO: reward should be based on q-value and TTL
         #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[nextAction].getReward()
         reward = self.neighbours[nextAction].getReward()
@@ -201,6 +202,7 @@ class Agent():
                 reward *= 1/getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition())
 
             nextState = self.getCurrentState()
+            nextState[action+1] += 1
             self.dqn_object.memory.store(state=state, action=action, next_state=nextState, reward=reward)
 
     
