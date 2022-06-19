@@ -121,7 +121,7 @@ def train(foldername,graphics=False):
 
 
 
-def test(render=True):
+def test(folder_name,render=True):
     """
     Function to test the agent
 
@@ -143,7 +143,7 @@ def test(render=True):
 
     # reset all agents
     map_.resetAll()
-    
+    BaseStation_obj.reset()
     # no need to load model here as train was previously called. so last updated model is the model to be used
 
     # turn off exploration for agents now
@@ -151,7 +151,10 @@ def test(render=True):
             agent.dqn_object.turn_off_exploration()
 
     step_cnt = 0
-
+    num_packets=[]
+    total_ttl=[]
+    time=[]
+    t=0
     while True:
         step_cnt += 1
 
@@ -169,6 +172,10 @@ def test(render=True):
             map_.renderMap()
 
         # check if all iot and uavs have sent out all packets
+        num_packets.append(BaseStation_obj.packetRecv)
+        total_ttl.append(BaseStation_obj.totalTtl)
+        time.append(t)
+        t+=1
         end = True
         for agent in Agents:
             if agent.getVal() != 0:
@@ -181,8 +188,16 @@ def test(render=True):
                 break
         
         if end:
-            return 
+            break
+    os.makedirs("{}/Plots".format(folder_name), exist_ok=True)
+    plt.plot(time,num_packets , color ='blue', label ='Packets Received')
+    plt.savefig('{}/Plots/Packet_Received.png'.format(folder_name))
+    plt.close()
 
+    plt.plot(time,total_ttl , color ='blue', label ='Sum of TTL')
+    plt.savefig('{}/Plots/SumOfTtl.png'.format(folder_name))
+    plt.close()
+    
 
 def meanTtl():
     packets = map_.getBaseStation().packets_received
@@ -197,7 +212,7 @@ def generatePlot(folder_name):
         epi_list = list(range(1,len(loss)+1))
         plt.plot(epi_list, loss, color ='orange', label ='Agent Loss')
         plt.savefig('{}/Plots/agent_at_{}.png'.format(folder_name,agent.getPosition()))
-
+        plt.close()
 
 
         
@@ -213,7 +228,7 @@ if __name__ ==  '__main__':
             fillMemory()
             train("{}/model_parameters".format(folder_name),False)
         map_.loadModel("{}/model_parameters".format(folder_name))
-        test()
+        test(folder_name)
         generatePlot(folder_name)
         
         print('Mean ttl of all packets received by base station: ',meanTtl())

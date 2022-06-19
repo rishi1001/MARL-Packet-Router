@@ -17,6 +17,7 @@ print(builtins.current_filename)
 defTtl = int(configur.get('packet','def_ttl'))
 # generate map of size n*m 
 ## p is probability of getting a UAV at particular cell
+
 class Map():
 
     def __init__(self,n,m,p):
@@ -33,6 +34,7 @@ class Map():
         map_=[['-' for i in range(self.m)] for j in range(self.n)]
         i=0
         j=0
+        initial_rate=10
         for line in file:
             j=0
             for char in line:
@@ -47,16 +49,20 @@ class Map():
                     self.agents.append(agent)
                 elif char == 'I':
                     #rate=  random.randint(2,10) 
-                    rate = 10 # with uniform random generation of packets, avergae will be 7 (<transmission rate)
+                    rate = initial_rate # with uniform random generation of packets, avergae will be 7 (<transmission rate)
+                    initial_rate += 1
                     iot = IotNodes(rate, defTtl,i,j)
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)
                 j+=1
+                if(j==self.m): break
             i+=1
         for i in range(self.n):
                 for j in range(self.m):
                     if map_[i][j].isBase():
                         continue
+                    if(map_[i][j].isUAV()):
+                        map_[i][j].targetBaseStation = self.BaseStation
                     # if map_[i,j].isUAV: # commenting this because IoT nodes also need neighbours
                     if i>0 and (map_[i-1][j].isUAV() or map_[i-1][j].isBase()):
                         map_[i][j].addNeighbour(map_[i-1][j])

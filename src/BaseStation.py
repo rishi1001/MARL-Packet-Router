@@ -15,10 +15,12 @@ class BaseStation():
         self.position = (x,y)
         self.packetRecv = 0
         self.packets_received = []
-
+        self.totalTtl=0
+       
 
     def acceptPacket(self, packet):
         self.packetRecv += 1
+        self.totalTtl+=packet.get_ttl()
         self.packets_received.append(packet)
 
     def getReward(self):
@@ -46,5 +48,6 @@ class BaseStation():
         """
         self.packetRecv = 0
         self.packets_received = []
+        self.totalTtl=0
 
     

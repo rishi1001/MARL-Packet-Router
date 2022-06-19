@@ -1,0 +1,125 @@
+===============================
+3130050.pbshpc
+khas049.hpc.iitd.ac.in
+===============================
+/home/cse/btech/cs1190368/marl-final
+python3 main.py res_2_2
+cuda
+res_2_2/config.ini
+--------
+| |0| |  10  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [10, 0]
+TTL :  8
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  453.8209533691406
+--------
+| |1| |  9  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [9, 0]
+TTL :  7
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  397.9496154785156
+--------
+| |2| |  8  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [8, 0]
+TTL :  6
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  355.8477478027344
+--------
+| |3| |  7  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [7, 0]
+TTL :  5
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  318.426513671875
+--------
+| |4| |  6  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [6, 0]
+TTL :  4
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  285.3907470703125
+--------
+| |5| |  5  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [5, 0]
+TTL :  3
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  254.64585876464844
+--------
+| |6| |  4  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [4, 0]
+TTL :  2
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  227.3536376953125
+--------
+| |7| |  3  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [3, 0]
+TTL :  1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  206.08627319335938
+--------
+| |8| |  2  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [2, 0]
+TTL :  0
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  188.31504821777344
+--------
+| |8| |  1  |
+--------
+|  0  | -10- |
+--------
+
+Position :  (0, 1)
+States :  [1, 0]
+TTL :  -1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  170.67581176757812
+--------
+| |8| |  0  |
+--------
+|  0  | -10- |
+--------
+
+Mean ttl of all packets received by base station:  4.5

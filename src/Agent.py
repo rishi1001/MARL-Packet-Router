@@ -198,6 +198,7 @@ class Agent():
             
             #reward = getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition()) + self.neighbours[action].getReward()
             reward = self.neighbours[action].getReward()
+            
             if(include_distance):
                 reward *= 1/getManhattanDistance(self.getPosition(), self.targetBaseStation.getPosition())
 
