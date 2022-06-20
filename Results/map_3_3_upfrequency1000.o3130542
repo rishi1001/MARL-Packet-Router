@@ -1,0 +1,327 @@
+===============================
+3130542.pbshpc
+khas049.hpc.iitd.ac.in
+===============================
+/home/cse/btech/cs1190368/marl-final
+python3 main.py res_3_3_upfrequency=1000
+cuda
+res_3_3_upfrequency=1000/config.ini
+------------
+| |0| |  20  | -10- |
+------------
+|  10  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [20, 0]
+TTL :  8
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  229.53533935546875
+Position :  (1, 0)
+States :  [10, 0]
+TTL :  8
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  266.0699768066406
+------------
+| |2| |  19  | -10- |
+------------
+|  9  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [19, 0]
+TTL :  7
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  197.2812957763672
+Position :  (1, 0)
+States :  [9, 0]
+TTL :  7
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  222.60499572753906
+------------
+| |4| |  18  | -10- |
+------------
+|  8  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [18, 0]
+TTL :  6
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  170.3592529296875
+Position :  (1, 0)
+States :  [8, 0]
+TTL :  6
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  195.90988159179688
+------------
+| |6| |  17  | -10- |
+------------
+|  7  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [17, 0]
+TTL :  5
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  163.41307067871094
+Position :  (1, 0)
+States :  [7, 0]
+TTL :  5
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  169.994873046875
+------------
+| |8| |  16  | -10- |
+------------
+|  6  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [16, 0]
+TTL :  4
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  148.06024169921875
+Position :  (1, 0)
+States :  [6, 0]
+TTL :  4
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  144.20310974121094
+------------
+| |10| |  15  | -10- |
+------------
+|  5  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [15, 0]
+TTL :  3
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  133.26370239257812
+Position :  (1, 0)
+States :  [5, 0]
+TTL :  3
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  122.93575286865234
+------------
+| |12| |  14  | -10- |
+------------
+|  4  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [14, 0]
+TTL :  2
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  118.17467498779297
+Position :  (1, 0)
+States :  [4, 0]
+TTL :  2
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  104.5280532836914
+------------
+| |14| |  13  | -10- |
+------------
+|  3  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [13, 0]
+TTL :  1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  103.05431365966797
+Position :  (1, 0)
+States :  [3, 0]
+TTL :  1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  92.25434875488281
+------------
+| |16| |  12  | -10- |
+------------
+|  2  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [12, 0]
+TTL :  0
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  87.88861083984375
+Position :  (1, 0)
+States :  [2, 0]
+TTL :  0
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  80.8006591796875
+------------
+| |16| |  11  | -10- |
+------------
+|  1  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [11, 0]
+TTL :  -1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  72.71827697753906
+Position :  (1, 0)
+States :  [1, 0]
+TTL :  -1
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  68.99661254882812
+------------
+| |16| |  10  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [10, 0]
+TTL :  -2
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  57.545928955078125
+------------
+| |16| |  9  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [9, 0]
+TTL :  -3
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  42.37031555175781
+------------
+| |16| |  8  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [8, 0]
+TTL :  -4
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  27.194700241088867
+------------
+| |16| |  7  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [7, 0]
+TTL :  -5
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  12.021345138549805
+------------
+| |16| |  6  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [6, 0]
+TTL :  -6
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -3.149339437484741
+------------
+| |16| |  5  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [5, 0]
+TTL :  -7
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -18.304445266723633
+------------
+| |16| |  4  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [4, 0]
+TTL :  -8
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -33.47145080566406
+------------
+| |16| |  3  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [3, 0]
+TTL :  -9
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -48.62994384765625
+------------
+| |16| |  2  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [2, 0]
+TTL :  -10
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -63.76139831542969
+------------
+| |16| |  1  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [1, 0]
+TTL :  -11
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  -78.77804565429688
+------------
+| |16| |  0  | -10- |
+------------
+|  0  | -10- |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Mean ttl of all packets received by base station:  4.5
