@@ -39,6 +39,10 @@ class BaseStation():
     def isIot(self):
         return False
 
+
+    def isBlock(self):
+        return False
+    
     def getVal(self):
         return self.packetRecv
 

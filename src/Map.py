@@ -1,10 +1,13 @@
 #import imp
 #from pkgutil import ImpImporter
+
 import random
+
+from numpy import block
 from .IotNodes import IotNodes
 from .BaseStation import BaseStation
 from .Agent import Agent
-
+from .Block import Block
 from configparser import ConfigParser
   
 configur = ConfigParser()
@@ -55,12 +58,15 @@ class Map():
                     iot = IotNodes(rate, defTtl,i,j)
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)
+                elif char=='X':
+                    block= Block((i,j))
+                    map_[i][j]=block
                 j+=1
                 if(j==self.m): break
             i+=1
         for i in range(self.n):
                 for j in range(self.m):
-                    if map_[i][j].isBase():
+                    if map_[i][j].isBase() or map_[i][j].isBlock():
                         continue
                     if(map_[i][j].isUAV()):
                         map_[i][j].targetBaseStation = self.BaseStation

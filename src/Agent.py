@@ -109,6 +109,9 @@ class Agent():
     def isBaseStation(self):
         return False
 
+    def isBlock(self):
+        return False
+    
     def getReward(self):       
         top_packet_ttl = self.getTopPacket().get_ttl()    
         reward = agent_to_agent_scale*self.dqn_object.getQValue(self.getCurrentState())    # TODO Scale this value. 

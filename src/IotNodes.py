@@ -58,6 +58,9 @@ class IotNodes():
     def isBaseStation(self):
         return False
 
+    def isBlock(self):
+        return False
+    
     def run(self):
         # self.total_packets+=self.rate
         self.generatePacket()
