@@ -75,7 +75,7 @@ While running the code, a map is to be provided. A custom map can be provided to
 A custom map can also be provided. We have added 5 maps in the /Maps directory, for 1x3, 1x4, 1x5, 2x2, 2x4 and 3x3 map sizes. The process of creating is custome map is given below.
 
 ### Creating a custom Map
-To create a map of size nxm, create a file and name it map_n_m.txt. There need to be n lines in the file, each corresponding to a row in the map. Each line would have m space separated characters. Each charater is either of a 'B', 'I', or 'A'. A 'B' in the 3rd line, as the 4th character indicates the base station is at position (2,3), assuming 0-based indexing. Similarly 'A' denotes an agent (UAV) and 'I' and IoT Node.
+To create a map of size nxm, create a file and name it map_n_m.txt. There need to be n lines in the file, each corresponding to a row in the map. Each line would have m space separated characters. Each charater is either of a 'B', 'I', or 'A'. A 'B' in the 3rd line, as the 4th character indicates the base station is at position (2,3), assuming 0-based indexing. Similarly 'A' denotes an agent (UAV) and 'I' and IoT Node. Add 'X' for block.
 
 ## References
 The code is inspired from [this](https://github.com/saashanair/rl-series) repository.
