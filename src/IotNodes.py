@@ -38,6 +38,10 @@ class IotNodes():
     
     def findNeighbour(self):
         ## TODO :policy to find the neighbour : returning one with min queue size as of now
+        ## IF base station is neigh
+        for agent in self.neighbours:
+            if(agent.isBase()):
+                return agent
         queues = np.array([agent.getVal() for agent in self.neighbours])
         agents = [agent for agent in self.neighbours]
         return agents[ np.argmin(queues) ]
@@ -57,12 +61,15 @@ class IotNodes():
     def run(self):
         # self.total_packets+=self.rate
         self.generatePacket()
-        for packet in self.queue:
-            packet.decrease_ttl()
+        # for packet in self.queue:
+        #     packet.decrease_ttl()
         for i in range(self.rate):
+            if len(self.neighbours)==0:
+                continue
             if self.getQueueSize() > 0:   # check if queue has any packets
                 packet = self.queue.pop(0)
                 agent=self.findNeighbour()
+                #print("Node at",self.getPosition(),"to",agent.getPosition())
                 agent.acceptPacket(packet)
             
 

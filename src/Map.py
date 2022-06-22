@@ -30,8 +30,9 @@ class Map():
         self.BaseStation = None
 
     def read(self):
-        file  = open('./Maps/map_{}_{}.txt'.format(self.n,self.m),'r') 
+        file  = open('./Maps/'+configur.get('map','name'),'r') 
         map_=[['-' for i in range(self.m)] for j in range(self.n)]
+        print("read ",file)
         i=0
         j=0
         initial_rate=10
@@ -50,7 +51,7 @@ class Map():
                 elif char == 'I':
                     #rate=  random.randint(2,10) 
                     rate = initial_rate # with uniform random generation of packets, avergae will be 7 (<transmission rate)
-                    initial_rate += 1
+                    #initial_rate += 1
                     iot = IotNodes(rate, defTtl,i,j)
                     map_[i][j]= iot
                     self.Iot_Nodes.append(iot)

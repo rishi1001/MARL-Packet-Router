@@ -1,0 +1,5 @@
+I A A A I
+A A A A I
+A I B A A
+A A A A A
+I A I A A
