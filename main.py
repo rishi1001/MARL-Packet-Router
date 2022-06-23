@@ -13,9 +13,9 @@ import torch
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(device)
 from configparser import ConfigParser
-  
+
 torch.cuda.empty_cache()
-if(len(sys.argv) <= 1): 
+if(len(sys.argv) <= 1):
     print("Please provide the config file folder name")
     exit()
 
@@ -34,6 +34,7 @@ tot_time = int(configur.get('train_model','tot_time'))
 update_frequency = int(configur.get('train_model','update_frequency'))
 save_frequency = int(configur.get('train_model','save_frequency'))
 generate_packets_till = int(configur.get('test_model','generate_packets_till'))
+gap_time= int(configur.get('train_model','gap_time'))
 
 n = int(configur.get('map','n'))
 m = int(configur.get('map','m'))
@@ -46,7 +47,7 @@ map_ = Map(n,m,p)
 #grid_map = map_.generate()
 
 ## Initially
-#grid_map = map_.dummyMap() 
+#grid_map = map_.dummyMap()
 map_.read()
 
 
@@ -59,11 +60,12 @@ Agents = map_.getAgents()
 def fillMemory():
 
     for _ in range(num_memory_fill_eps):
-        
+
         for time in range(tot_time):
 
-            for node in IotNodes:
-                node.run()
+            if(time%gap_time==0):
+                for node in IotNodes:
+                    node.run()
 
             for agent in Agents:
                 agent.randomRun()
@@ -72,10 +74,10 @@ def fillMemory():
                 agent.update_state()
 
         map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
-                        
+
 
 def train(foldername,graphics=False):
-    
+
     step_cnt = 0
 
     for episode in tqdm(range(tot_episodes), position=0, leave=True):
@@ -84,13 +86,14 @@ def train(foldername,graphics=False):
             # print("Episode Number : ", episode)
 
         if step_cnt % update_frequency == 0 and step_cnt!=0:
-            for agent in Agents:                    # update the target net after update_frequency steps   
+            for agent in Agents:                    # update the target net after update_frequency steps
                 agent.dqn_object.updateTargetNet()
 
         for time in range(tot_time):
 
-            for node in IotNodes:
-                node.run()
+            if(time%gap_time==0):
+                for node in IotNodes:
+                    node.run()
 
             ##TODO agent order affects current state reason : agent x->y and y->z can transmit same packet in single timestamp(if order is x,y,z)
             for agent in Agents:
@@ -101,17 +104,18 @@ def train(foldername,graphics=False):
 
             if graphics and episode == tot_episodes-1 :
                 map_.renderMap()
-            
-        
+
+
         step_cnt += 1
         # print("Episode Num : ", episode)
         for agent in Agents:
             agent.dqn_object.updateEpsilon()
             agent.saveLoss()
-            # print("Loss :", agent.latest_loss) 
-
+            # print("Loss :", agent.latest_loss)
+        print("Episode Number:",episode,"Packet reached:",BaseStation_obj.packetRecv)
+        # print("Packet reached:",BaseStation_obj.packetRecv)
         map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
-        
+
 
         if(episode% save_frequency == 0):
             for agent in Agents:
@@ -156,11 +160,12 @@ def test(folder_name,render=True):
     time=[]
     t=0
     while True:
-        step_cnt += 1
 
-        if step_cnt <= generate_packets_till:
-            for node in IotNodes:
-                node.run()
+        if(t%gap_time==0):
+            step_cnt += 1
+            if step_cnt <= generate_packets_till:
+                for node in IotNodes:
+                    node.run()
 
         for agent in Agents:
             agent.run(False)
@@ -181,12 +186,12 @@ def test(folder_name,render=True):
             if agent.getVal() != 0:
                 end = False
                 break
-        
+
         for iot in IotNodes:
             if iot.getQueueSize() !=0:
                 end = False
                 break
-        
+
         if end:
             break
     os.makedirs("{}/Plots".format(folder_name), exist_ok=True)
@@ -197,7 +202,7 @@ def test(folder_name,render=True):
     plt.plot(time,total_ttl , color ='blue', label ='Sum of TTL')
     plt.savefig('{}/Plots/SumOfTtl.png'.format(folder_name))
     plt.close()
-    
+
 
 def meanTtl():
     packets = map_.getBaseStation().packets_received
@@ -215,11 +220,11 @@ def generatePlot(folder_name):
         plt.close()
 
 
-        
+
 
 if __name__ ==  '__main__':
 
-        
+
         os.makedirs("{}/model_parameters".format(folder_name), exist_ok=True)
         map_.initModels(device)
         # fillMemory()
@@ -230,6 +235,6 @@ if __name__ ==  '__main__':
         map_.loadModel("{}/model_parameters".format(folder_name))
         test(folder_name)
         generatePlot(folder_name)
-        
+
         print('Mean ttl of all packets received by base station: ',meanTtl())
 

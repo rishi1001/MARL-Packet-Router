@@ -1,0 +1,4 @@
+A B A
+A X A
+A A A
+I X X

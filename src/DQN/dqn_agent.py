@@ -19,18 +19,23 @@ configur.read(builtins.current_filename)
 
 # configur.read('config.ini')
 
-
+discount1 = float(configur.get('architecture','discount'))
+eps_max1= float(configur.get('architecture','eps_max'))
+eps_min1= float(configur.get('architecture','eps_min'))
+eps_decay1 = float(configur.get('architecture','eps_decay'))
+memory_capacity1 = int(configur.get('architecture','memory_capacity'))
+lr1= float(configur.get('architecture','lr'))
 class DQNAgent:
     """
     Class that defines the functions required for training the DQN agent
     """
     def __init__(self, device, state_size, action_size, 
-                    discount=0.99, 
-                    eps_max=1.0, 
-                    eps_min=0.01, 
-                    eps_decay=0.995, 
-                    memory_capacity=5000, 
-                    lr=1e-3, 
+                    discount=discount1, 
+                    eps_max=eps_max1, 
+                    eps_min=eps_min1, 
+                    eps_decay=eps_decay1, 
+                    memory_capacity=memory_capacity1, 
+                    lr=lr1, 
                     train_mode=True):
 
         self.device = device
