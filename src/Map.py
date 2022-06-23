@@ -139,7 +139,11 @@ class Map():
         for i in range(self.n):
             print('|',end="")
             for j in range(self.m):
-                if self.map[i][j].isBase():
+                if self.map[i][j].isBlock():
+                    print(' |',end="")
+                    print('X',end="")
+                    print('| ',end="")
+                elif self.map[i][j].isBase():
                     print(' |',end="")
                     print(self.map[i][j].getVal(),end="")
                     print('| ',end="")
