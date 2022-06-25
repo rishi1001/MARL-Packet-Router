@@ -1,0 +1,790 @@
+===============================
+3136645.pbshpc
+khas103.hpc.iitd.ac.in
+===============================
+/home/cse/btech/cs1190368/marl-final
+python3 main.py final_4_3_2_decay_0.9995_archange
+cuda
+final_4_3_2_decay_0.9995_archange/config.ini
+read  <_io.TextIOWrapper name='./Maps/map_4_3/map_4_3_2.txt' mode='r' encoding='UTF-8'>
+Episode Number: 0 Packet reached: 1
+Episode Number: 1 Packet reached: 3
+Episode Number: 2 Packet reached: 6
+Episode Number: 3 Packet reached: 2
+Episode Number: 4 Packet reached: 2
+Episode Number: 5 Packet reached: 4
+Episode Number: 6 Packet reached: 4
+Episode Number: 7 Packet reached: 2
+Episode Number: 8 Packet reached: 2
+Episode Number: 9 Packet reached: 1
+Episode Number: 10 Packet reached: 3
+Episode Number: 11 Packet reached: 2
+Episode Number: 12 Packet reached: 5
+Episode Number: 13 Packet reached: 2
+Episode Number: 14 Packet reached: 1
+Episode Number: 15 Packet reached: 3
+Episode Number: 16 Packet reached: 1
+Episode Number: 17 Packet reached: 2
+Episode Number: 18 Packet reached: 5
+Episode Number: 19 Packet reached: 1
+Episode Number: 20 Packet reached: 3
+Episode Number: 21 Packet reached: 0
+Episode Number: 22 Packet reached: 1
+Episode Number: 23 Packet reached: 2
+Episode Number: 24 Packet reached: 2
+Episode Number: 25 Packet reached: 2
+Episode Number: 26 Packet reached: 3
+Episode Number: 27 Packet reached: 2
+Episode Number: 28 Packet reached: 2
+Episode Number: 29 Packet reached: 4
+Episode Number: 30 Packet reached: 2
+Episode Number: 31 Packet reached: 5
+Episode Number: 32 Packet reached: 2
+Episode Number: 33 Packet reached: 3
+Episode Number: 34 Packet reached: 3
+Episode Number: 35 Packet reached: 2
+Episode Number: 36 Packet reached: 4
+Episode Number: 37 Packet reached: 4
+Episode Number: 38 Packet reached: 3
+Episode Number: 39 Packet reached: 4
+Episode Number: 40 Packet reached: 2
+Episode Number: 41 Packet reached: 0
+Episode Number: 42 Packet reached: 2
+Episode Number: 43 Packet reached: 0
+Episode Number: 44 Packet reached: 2
+Episode Number: 45 Packet reached: 5
+Episode Number: 46 Packet reached: 3
+Episode Number: 47 Packet reached: 2
+Episode Number: 48 Packet reached: 0
+Episode Number: 49 Packet reached: 5
+Episode Number: 50 Packet reached: 2
+Episode Number: 51 Packet reached: 1
+Episode Number: 52 Packet reached: 4
+Episode Number: 53 Packet reached: 0
+Episode Number: 54 Packet reached: 3
+Episode Number: 55 Packet reached: 3
+Episode Number: 56 Packet reached: 3
+Episode Number: 57 Packet reached: 5
+Episode Number: 58 Packet reached: 2
+Episode Number: 59 Packet reached: 6
+Episode Number: 60 Packet reached: 3
+Episode Number: 61 Packet reached: 5
+Episode Number: 62 Packet reached: 3
+Episode Number: 63 Packet reached: 3
+Episode Number: 64 Packet reached: 1
+Episode Number: 65 Packet reached: 2
+Episode Number: 66 Packet reached: 3
+Episode Number: 67 Packet reached: 5
+Episode Number: 68 Packet reached: 2
+Episode Number: 69 Packet reached: 1
+Episode Number: 70 Packet reached: 3
+Episode Number: 71 Packet reached: 1
+Episode Number: 72 Packet reached: 4
+Episode Number: 73 Packet reached: 5
+Episode Number: 74 Packet reached: 5
+Episode Number: 75 Packet reached: 3
+Episode Number: 76 Packet reached: 3
+Episode Number: 77 Packet reached: 4
+Episode Number: 78 Packet reached: 1
+Episode Number: 79 Packet reached: 6
+Episode Number: 80 Packet reached: 3
+Episode Number: 81 Packet reached: 2
+Episode Number: 82 Packet reached: 6
+Episode Number: 83 Packet reached: 2
+Episode Number: 84 Packet reached: 2
+Episode Number: 85 Packet reached: 2
+Episode Number: 86 Packet reached: 4
+Episode Number: 87 Packet reached: 5
+Episode Number: 88 Packet reached: 2
+Episode Number: 89 Packet reached: 4
+Episode Number: 90 Packet reached: 1
+Episode Number: 91 Packet reached: 6
+Episode Number: 92 Packet reached: 4
+Episode Number: 93 Packet reached: 4
+Episode Number: 94 Packet reached: 3
+Episode Number: 95 Packet reached: 4
+Episode Number: 96 Packet reached: 3
+Episode Number: 97 Packet reached: 0
+Episode Number: 98 Packet reached: 2
+Episode Number: 99 Packet reached: 3
+Episode Number: 100 Packet reached: 3
+Episode Number: 101 Packet reached: 8
+Episode Number: 102 Packet reached: 3
+Episode Number: 103 Packet reached: 3
+Episode Number: 104 Packet reached: 3
+Episode Number: 105 Packet reached: 3
+Episode Number: 106 Packet reached: 4
+Episode Number: 107 Packet reached: 6
+Episode Number: 108 Packet reached: 2
+Episode Number: 109 Packet reached: 4
+Episode Number: 110 Packet reached: 4
+Episode Number: 111 Packet reached: 5
+Episode Number: 112 Packet reached: 5
+Episode Number: 113 Packet reached: 3
+Episode Number: 114 Packet reached: 2
+Episode Number: 115 Packet reached: 6
+Episode Number: 116 Packet reached: 3
+Episode Number: 117 Packet reached: 2
+Episode Number: 118 Packet reached: 4
+Episode Number: 119 Packet reached: 2
+Episode Number: 120 Packet reached: 1
+Episode Number: 121 Packet reached: 2
+Episode Number: 122 Packet reached: 5
+Episode Number: 123 Packet reached: 0
+Episode Number: 124 Packet reached: 2
+Episode Number: 125 Packet reached: 2
+Episode Number: 126 Packet reached: 2
+Episode Number: 127 Packet reached: 4
+Episode Number: 128 Packet reached: 3
+Episode Number: 129 Packet reached: 6
+Episode Number: 130 Packet reached: 3
+Episode Number: 131 Packet reached: 0
+Episode Number: 132 Packet reached: 4
+Episode Number: 133 Packet reached: 3
+Episode Number: 134 Packet reached: 5
+Episode Number: 135 Packet reached: 6
+Episode Number: 136 Packet reached: 4
+Episode Number: 137 Packet reached: 7
+Episode Number: 138 Packet reached: 3
+Episode Number: 139 Packet reached: 5
+Episode Number: 140 Packet reached: 5
+Episode Number: 141 Packet reached: 6
+Episode Number: 142 Packet reached: 2
+Episode Number: 143 Packet reached: 4
+Episode Number: 144 Packet reached: 5
+Episode Number: 145 Packet reached: 8
+Episode Number: 146 Packet reached: 4
+Episode Number: 147 Packet reached: 4
+Episode Number: 148 Packet reached: 4
+Episode Number: 149 Packet reached: 3
+Episode Number: 150 Packet reached: 3
+Episode Number: 151 Packet reached: 4
+Episode Number: 152 Packet reached: 7
+Episode Number: 153 Packet reached: 3
+Episode Number: 154 Packet reached: 2
+Episode Number: 155 Packet reached: 4
+Episode Number: 156 Packet reached: 5
+Episode Number: 157 Packet reached: 7
+Episode Number: 158 Packet reached: 4
+Episode Number: 159 Packet reached: 3
+Episode Number: 160 Packet reached: 3
+Episode Number: 161 Packet reached: 3
+Episode Number: 162 Packet reached: 3
+Episode Number: 163 Packet reached: 3
+Episode Number: 164 Packet reached: 1
+Episode Number: 165 Packet reached: 3
+Episode Number: 166 Packet reached: 3
+Episode Number: 167 Packet reached: 5
+Episode Number: 168 Packet reached: 5
+Episode Number: 169 Packet reached: 3
+Episode Number: 170 Packet reached: 3
+Episode Number: 171 Packet reached: 1
+Episode Number: 172 Packet reached: 2
+Episode Number: 173 Packet reached: 5
+Episode Number: 174 Packet reached: 4
+Episode Number: 175 Packet reached: 3
+Episode Number: 176 Packet reached: 2
+Episode Number: 177 Packet reached: 2
+Episode Number: 178 Packet reached: 4
+Episode Number: 179 Packet reached: 5
+Episode Number: 180 Packet reached: 3
+Episode Number: 181 Packet reached: 5
+Episode Number: 182 Packet reached: 4
+Episode Number: 183 Packet reached: 4
+Episode Number: 184 Packet reached: 3
+Episode Number: 185 Packet reached: 3
+Episode Number: 186 Packet reached: 6
+Episode Number: 187 Packet reached: 2
+Episode Number: 188 Packet reached: 6
+Episode Number: 189 Packet reached: 4
+Episode Number: 190 Packet reached: 5
+Episode Number: 191 Packet reached: 4
+Episode Number: 192 Packet reached: 3
+Episode Number: 193 Packet reached: 1
+Episode Number: 194 Packet reached: 4
+Episode Number: 195 Packet reached: 4
+Episode Number: 196 Packet reached: 4
+Episode Number: 197 Packet reached: 0
+Episode Number: 198 Packet reached: 5
+Episode Number: 199 Packet reached: 1
+Episode Number: 200 Packet reached: 4
+Episode Number: 201 Packet reached: 9
+Episode Number: 202 Packet reached: 3
+Episode Number: 203 Packet reached: 1
+Episode Number: 204 Packet reached: 0
+Episode Number: 205 Packet reached: 2
+Episode Number: 206 Packet reached: 3
+Episode Number: 207 Packet reached: 8
+Episode Number: 208 Packet reached: 10
+Episode Number: 209 Packet reached: 3
+Episode Number: 210 Packet reached: 6
+Episode Number: 211 Packet reached: 3
+Episode Number: 212 Packet reached: 5
+Episode Number: 213 Packet reached: 5
+Episode Number: 214 Packet reached: 5
+Episode Number: 215 Packet reached: 2
+Episode Number: 216 Packet reached: 3
+Episode Number: 217 Packet reached: 3
+Episode Number: 218 Packet reached: 5
+Episode Number: 219 Packet reached: 4
+Episode Number: 220 Packet reached: 3
+Episode Number: 221 Packet reached: 5
+Episode Number: 222 Packet reached: 4
+Episode Number: 223 Packet reached: 9
+Episode Number: 224 Packet reached: 5
+Episode Number: 225 Packet reached: 5
+Episode Number: 226 Packet reached: 5
+Episode Number: 227 Packet reached: 4
+Episode Number: 228 Packet reached: 6
+Episode Number: 229 Packet reached: 4
+Episode Number: 230 Packet reached: 4
+Episode Number: 231 Packet reached: 5
+Episode Number: 232 Packet reached: 4
+Episode Number: 233 Packet reached: 6
+Episode Number: 234 Packet reached: 4
+Episode Number: 235 Packet reached: 5
+Episode Number: 236 Packet reached: 5
+Episode Number: 237 Packet reached: 4
+Episode Number: 238 Packet reached: 4
+Episode Number: 239 Packet reached: 3
+Episode Number: 240 Packet reached: 4
+Episode Number: 241 Packet reached: 6
+Episode Number: 242 Packet reached: 9
+Episode Number: 243 Packet reached: 7
+Episode Number: 244 Packet reached: 2
+Episode Number: 245 Packet reached: 2
+Episode Number: 246 Packet reached: 6
+Episode Number: 247 Packet reached: 5
+Episode Number: 248 Packet reached: 3
+Episode Number: 249 Packet reached: 4
+Episode Number: 250 Packet reached: 4
+Episode Number: 251 Packet reached: 4
+Episode Number: 252 Packet reached: 5
+Episode Number: 253 Packet reached: 1
+Episode Number: 254 Packet reached: 6
+Episode Number: 255 Packet reached: 2
+Episode Number: 256 Packet reached: 5
+Episode Number: 257 Packet reached: 5
+Episode Number: 258 Packet reached: 8
+Episode Number: 259 Packet reached: 4
+Episode Number: 260 Packet reached: 5
+Episode Number: 261 Packet reached: 2
+Episode Number: 262 Packet reached: 2
+Episode Number: 263 Packet reached: 5
+Episode Number: 264 Packet reached: 2
+Episode Number: 265 Packet reached: 4
+Episode Number: 266 Packet reached: 4
+Episode Number: 267 Packet reached: 2
+Episode Number: 268 Packet reached: 7
+Episode Number: 269 Packet reached: 13
+Episode Number: 270 Packet reached: 7
+Episode Number: 271 Packet reached: 2
+Episode Number: 272 Packet reached: 3
+Episode Number: 273 Packet reached: 7
+Episode Number: 274 Packet reached: 5
+Episode Number: 275 Packet reached: 0
+Episode Number: 276 Packet reached: 5
+Episode Number: 277 Packet reached: 7
+Episode Number: 278 Packet reached: 5
+Episode Number: 279 Packet reached: 5
+Episode Number: 280 Packet reached: 5
+Episode Number: 281 Packet reached: 3
+Episode Number: 282 Packet reached: 5
+Episode Number: 283 Packet reached: 8
+Episode Number: 284 Packet reached: 8
+Episode Number: 285 Packet reached: 8
+Episode Number: 286 Packet reached: 8
+Episode Number: 287 Packet reached: 5
+Episode Number: 288 Packet reached: 3
+Episode Number: 289 Packet reached: 6
+Episode Number: 290 Packet reached: 2
+Episode Number: 291 Packet reached: 6
+Episode Number: 292 Packet reached: 5
+Episode Number: 293 Packet reached: 5
+Episode Number: 294 Packet reached: 4
+Episode Number: 295 Packet reached: 9
+Episode Number: 296 Packet reached: 5
+Episode Number: 297 Packet reached: 2
+Episode Number: 298 Packet reached: 6
+Episode Number: 299 Packet reached: 5
+Episode Number: 300 Packet reached: 11
+Episode Number: 301 Packet reached: 2
+Episode Number: 302 Packet reached: 8
+Episode Number: 303 Packet reached: 6
+Episode Number: 304 Packet reached: 6
+Episode Number: 305 Packet reached: 4
+Episode Number: 306 Packet reached: 7
+Episode Number: 307 Packet reached: 5
+Episode Number: 308 Packet reached: 7
+Episode Number: 309 Packet reached: 4
+Episode Number: 310 Packet reached: 5
+Episode Number: 311 Packet reached: 6
+Episode Number: 312 Packet reached: 6
+Episode Number: 313 Packet reached: 7
+Episode Number: 314 Packet reached: 3
+Episode Number: 315 Packet reached: 5
+Episode Number: 316 Packet reached: 8
+Episode Number: 317 Packet reached: 5
+Episode Number: 318 Packet reached: 5
+Episode Number: 319 Packet reached: 5
+Episode Number: 320 Packet reached: 6
+Episode Number: 321 Packet reached: 5
+Episode Number: 322 Packet reached: 8
+Episode Number: 323 Packet reached: 5
+Episode Number: 324 Packet reached: 8
+Episode Number: 325 Packet reached: 3
+Episode Number: 326 Packet reached: 5
+Episode Number: 327 Packet reached: 3
+Episode Number: 328 Packet reached: 7
+Episode Number: 329 Packet reached: 6
+Episode Number: 330 Packet reached: 13
+Episode Number: 331 Packet reached: 7
+Episode Number: 332 Packet reached: 6
+Episode Number: 333 Packet reached: 5
+Episode Number: 334 Packet reached: 4
+Episode Number: 335 Packet reached: 6
+Episode Number: 336 Packet reached: 7
+Episode Number: 337 Packet reached: 3
+Episode Number: 338 Packet reached: 8
+Episode Number: 339 Packet reached: 5
+Episode Number: 340 Packet reached: 6
+Episode Number: 341 Packet reached: 4
+Episode Number: 342 Packet reached: 7
+Episode Number: 343 Packet reached: 3
+Episode Number: 344 Packet reached: 4
+Episode Number: 345 Packet reached: 3
+Episode Number: 346 Packet reached: 9
+Episode Number: 347 Packet reached: 5
+Episode Number: 348 Packet reached: 3
+Episode Number: 349 Packet reached: 8
+Episode Number: 350 Packet reached: 10
+Episode Number: 351 Packet reached: 3
+Episode Number: 352 Packet reached: 10
+Episode Number: 353 Packet reached: 7
+Episode Number: 354 Packet reached: 8
+Episode Number: 355 Packet reached: 6
+Episode Number: 356 Packet reached: 9
+Episode Number: 357 Packet reached: 7
+Episode Number: 358 Packet reached: 9
+Episode Number: 359 Packet reached: 4
+Episode Number: 360 Packet reached: 5
+Episode Number: 361 Packet reached: 6
+Episode Number: 362 Packet reached: 6
+Episode Number: 363 Packet reached: 7
+Episode Number: 364 Packet reached: 9
+Episode Number: 365 Packet reached: 9
+Episode Number: 366 Packet reached: 6
+Episode Number: 367 Packet reached: 9
+Episode Number: 368 Packet reached: 5
+Episode Number: 369 Packet reached: 7
+Episode Number: 370 Packet reached: 4
+Episode Number: 371 Packet reached: 8
+Episode Number: 372 Packet reached: 13
+Episode Number: 373 Packet reached: 5
+Episode Number: 374 Packet reached: 6
+Episode Number: 375 Packet reached: 4
+Episode Number: 376 Packet reached: 4
+Episode Number: 377 Packet reached: 6
+Episode Number: 378 Packet reached: 7
+Episode Number: 379 Packet reached: 5
+Episode Number: 380 Packet reached: 1
+Episode Number: 381 Packet reached: 8
+Episode Number: 382 Packet reached: 5
+Episode Number: 383 Packet reached: 9
+Episode Number: 384 Packet reached: 6
+Episode Number: 385 Packet reached: 1
+Episode Number: 386 Packet reached: 8
+Episode Number: 387 Packet reached: 4
+Episode Number: 388 Packet reached: 3
+Episode Number: 389 Packet reached: 3
+Episode Number: 390 Packet reached: 4
+Episode Number: 391 Packet reached: 5
+Episode Number: 392 Packet reached: 8
+Episode Number: 393 Packet reached: 4
+Episode Number: 394 Packet reached: 7
+Episode Number: 395 Packet reached: 8
+Episode Number: 396 Packet reached: 4
+Episode Number: 397 Packet reached: 3
+Episode Number: 398 Packet reached: 6
+Episode Number: 399 Packet reached: 8
+Episode Number: 400 Packet reached: 9
+Episode Number: 401 Packet reached: 2
+Episode Number: 402 Packet reached: 14
+Episode Number: 403 Packet reached: 5
+Episode Number: 404 Packet reached: 9
+Episode Number: 405 Packet reached: 9
+Episode Number: 406 Packet reached: 9
+Episode Number: 407 Packet reached: 5
+Episode Number: 408 Packet reached: 9
+Episode Number: 409 Packet reached: 9
+Episode Number: 410 Packet reached: 10
+Episode Number: 411 Packet reached: 5
+Episode Number: 412 Packet reached: 8
+Episode Number: 413 Packet reached: 7
+Episode Number: 414 Packet reached: 8
+Episode Number: 415 Packet reached: 5
+Episode Number: 416 Packet reached: 4
+Episode Number: 417 Packet reached: 4
+Episode Number: 418 Packet reached: 6
+Episode Number: 419 Packet reached: 8
+Episode Number: 420 Packet reached: 4
+Episode Number: 421 Packet reached: 7
+Episode Number: 422 Packet reached: 4
+Episode Number: 423 Packet reached: 8
+Episode Number: 424 Packet reached: 4
+Episode Number: 425 Packet reached: 9
+Episode Number: 426 Packet reached: 11
+Episode Number: 427 Packet reached: 5
+Episode Number: 428 Packet reached: 9
+Episode Number: 429 Packet reached: 7
+Episode Number: 430 Packet reached: 9
+Episode Number: 431 Packet reached: 9
+Episode Number: 432 Packet reached: 5
+Episode Number: 433 Packet reached: 8
+Episode Number: 434 Packet reached: 10
+Episode Number: 435 Packet reached: 8
+Episode Number: 436 Packet reached: 8
+Episode Number: 437 Packet reached: 6
+Episode Number: 438 Packet reached: 5
+Episode Number: 439 Packet reached: 5
+Episode Number: 440 Packet reached: 9
+Episode Number: 441 Packet reached: 6
+Episode Number: 442 Packet reached: 5
+Episode Number: 443 Packet reached: 11
+Episode Number: 444 Packet reached: 7
+Episode Number: 445 Packet reached: 6
+Episode Number: 446 Packet reached: 8
+Episode Number: 447 Packet reached: 7
+Episode Number: 448 Packet reached: 6
+Episode Number: 449 Packet reached: 9
+Episode Number: 450 Packet reached: 7
+Episode Number: 451 Packet reached: 2
+Episode Number: 452 Packet reached: 4
+Episode Number: 453 Packet reached: 5
+Episode Number: 454 Packet reached: 10
+Episode Number: 455 Packet reached: 5
+Episode Number: 456 Packet reached: 5
+Episode Number: 457 Packet reached: 8
+Episode Number: 458 Packet reached: 7
+Episode Number: 459 Packet reached: 4
+Episode Number: 460 Packet reached: 5
+Episode Number: 461 Packet reached: 5
+Episode Number: 462 Packet reached: 7
+Episode Number: 463 Packet reached: 6
+Episode Number: 464 Packet reached: 9
+Episode Number: 465 Packet reached: 11
+Episode Number: 466 Packet reached: 7
+Episode Number: 467 Packet reached: 12
+Episode Number: 468 Packet reached: 7
+Episode Number: 469 Packet reached: 8
+Episode Number: 470 Packet reached: 9
+Episode Number: 471 Packet reached: 9
+Episode Number: 472 Packet reached: 11
+Episode Number: 473 Packet reached: 7
+Episode Number: 474 Packet reached: 7
+Episode Number: 475 Packet reached: 5
+Episode Number: 476 Packet reached: 4
+Episode Number: 477 Packet reached: 6
+Episode Number: 478 Packet reached: 4
+Episode Number: 479 Packet reached: 8
+Episode Number: 480 Packet reached: 10
+Episode Number: 481 Packet reached: 9
+Episode Number: 482 Packet reached: 9
+Episode Number: 483 Packet reached: 7
+Episode Number: 484 Packet reached: 11
+Episode Number: 485 Packet reached: 6
+Episode Number: 486 Packet reached: 11
+Episode Number: 487 Packet reached: 8
+Episode Number: 488 Packet reached: 8
+Episode Number: 489 Packet reached: 10
+Episode Number: 490 Packet reached: 8
+Episode Number: 491 Packet reached: 6
+Episode Number: 492 Packet reached: 6
+Episode Number: 493 Packet reached: 7
+Episode Number: 494 Packet reached: 7
+Episode Number: 495 Packet reached: 6
+Episode Number: 496 Packet reached: 7
+Episode Number: 497 Packet reached: 8
+Episode Number: 498 Packet reached: 10
+Episode Number: 499 Packet reached: 11
+------------
+|  0  | |0| |  0  |
+------------
+|  0  | |X| |  0  |
+------------
+|  10  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (2, 0)
+States :  [10, 0, 0]
+TTL :  99
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  926.727783203125
+------------
+|  0  | |0| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  9  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (1, 0)
+States :  [1, 0, 9]
+TTL :  98
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4862.04248046875
+Position :  (2, 0)
+States :  [9, 0, 0]
+TTL :  98
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  870.9909057617188
+------------
+|  1  | |0| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  8  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  97
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 8]
+TTL :  97
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4690.47021484375
+Position :  (2, 0)
+States :  [8, 0, 0]
+TTL :  97
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  815.2780151367188
+------------
+|  1  | |1| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  7  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  96
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 7]
+TTL :  96
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4518.8984375
+Position :  (2, 0)
+States :  [7, 0, 0]
+TTL :  96
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  759.5648803710938
+------------
+|  1  | |2| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  6  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  95
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 6]
+TTL :  95
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4347.32666015625
+Position :  (2, 0)
+States :  [6, 0, 0]
+TTL :  95
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  704.2675170898438
+------------
+|  1  | |3| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  5  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  94
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 5]
+TTL :  94
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4176.9296875
+Position :  (2, 0)
+States :  [5, 0, 0]
+TTL :  94
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  649.7490234375
+------------
+|  1  | |4| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  4  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  93
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 4]
+TTL :  93
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  4011.935791015625
+Position :  (2, 0)
+States :  [4, 0, 0]
+TTL :  93
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  599.9866333007812
+------------
+|  1  | |5| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  3  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  92
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 3]
+TTL :  92
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  3846.942626953125
+Position :  (2, 0)
+States :  [3, 0, 0]
+TTL :  92
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  552.0507202148438
+------------
+|  1  | |6| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  2  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  91
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 2]
+TTL :  91
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  3681.94873046875
+Position :  (2, 0)
+States :  [2, 0, 0]
+TTL :  91
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  505.0673828125
+------------
+|  1  | |7| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  1  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  90
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 1]
+TTL :  90
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  3516.955078125
+Position :  (2, 0)
+States :  [1, 0, 0]
+TTL :  90
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  458.99468994140625
+------------
+|  1  | |8| |  0  |
+------------
+|  1  | |X| |  0  |
+------------
+|  0  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 1, 0]
+TTL :  89
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  17258.046875
+Position :  (1, 0)
+States :  [1, 0, 0]
+TTL :  89
+Packet forwarded to neighbour :  (0, 0)
+Q-Value :  3351.961669921875
+------------
+|  1  | |9| |  0  |
+------------
+|  0  | |X| |  0  |
+------------
+|  0  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Position :  (0, 0)
+States :  [1, 0, 0]
+TTL :  88
+Packet forwarded to neighbour :  (0, 1)
+Q-Value :  13721.6904296875
+------------
+|  0  | |10| |  0  |
+------------
+|  0  | |X| |  0  |
+------------
+|  0  |  0  |  0  |
+------------
+| -10- | |X| | |X| |
+------------
+
+Mean ttl of all packets received by base station:  92.5

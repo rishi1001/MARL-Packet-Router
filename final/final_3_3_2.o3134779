@@ -1,0 +1,198 @@
+===============================
+3134779.pbshpc
+khas150.hpc.iitd.ac.in
+===============================
+/home/cse/btech/cs1190368/marl-final
+python3 main.py final_3_3_2
+cuda
+final_3_3_2/config.ini
+read  <_io.TextIOWrapper name='./Maps/maps_3_3/map_3_3_2.txt' mode='r' encoding='UTF-8'>
+------------
+|  0  |  10  | -10- |
+------------
+|  10  | |0| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [10, 0, 0]
+TTL :  99
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  29187.6875
+Position :  (1, 0)
+States :  [10, 0, 0]
+TTL :  99
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  28513.0234375
+------------
+|  0  |  9  | -10- |
+------------
+|  9  | |2| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [9, 0, 0]
+TTL :  98
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  29131.58984375
+Position :  (1, 0)
+States :  [9, 0, 0]
+TTL :  98
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  28114.82421875
+------------
+|  0  |  8  | -10- |
+------------
+|  8  | |4| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [8, 0, 0]
+TTL :  97
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  29074.693359375
+Position :  (1, 0)
+States :  [8, 0, 0]
+TTL :  97
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  27689.328125
+------------
+|  0  |  7  | -10- |
+------------
+|  7  | |6| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [7, 0, 0]
+TTL :  96
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  28646.55078125
+Position :  (1, 0)
+States :  [7, 0, 0]
+TTL :  96
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  27018.93359375
+------------
+|  0  |  6  | -10- |
+------------
+|  6  | |8| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [6, 0, 0]
+TTL :  95
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  27859.96484375
+Position :  (1, 0)
+States :  [6, 0, 0]
+TTL :  95
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  26264.0
+------------
+|  0  |  5  | -10- |
+------------
+|  5  | |10| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [5, 0, 0]
+TTL :  94
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  27073.185546875
+Position :  (1, 0)
+States :  [5, 0, 0]
+TTL :  94
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  25508.796875
+------------
+|  0  |  4  | -10- |
+------------
+|  4  | |12| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [4, 0, 0]
+TTL :  93
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  26286.423828125
+Position :  (1, 0)
+States :  [4, 0, 0]
+TTL :  93
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  24753.6015625
+------------
+|  0  |  3  | -10- |
+------------
+|  3  | |14| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [3, 0, 0]
+TTL :  92
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  25501.634765625
+Position :  (1, 0)
+States :  [3, 0, 0]
+TTL :  92
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  23998.431640625
+------------
+|  0  |  2  | -10- |
+------------
+|  2  | |16| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [2, 0, 0]
+TTL :  91
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  24717.0390625
+Position :  (1, 0)
+States :  [2, 0, 0]
+TTL :  91
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  23243.267578125
+------------
+|  0  |  1  | -10- |
+------------
+|  1  | |18| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Position :  (0, 1)
+States :  [1, 0, 0]
+TTL :  90
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  23932.58203125
+Position :  (1, 0)
+States :  [1, 0, 0]
+TTL :  90
+Packet forwarded to neighbour :  (1, 1)
+Q-Value :  22488.177734375
+------------
+|  0  |  0  | -10- |
+------------
+|  0  | |20| |  0  |
+------------
+| -10- |  0  |  0  |
+------------
+
+Mean ttl of all packets received by base station:  94.5
