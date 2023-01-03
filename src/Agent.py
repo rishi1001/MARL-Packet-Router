@@ -4,6 +4,7 @@ from .utils import getManhattanDistance
 import math
 
 from configparser import ConfigParser
+from matplotlib import pyplot as plt
   
 configur = ConfigParser()
 import builtins
@@ -31,6 +32,7 @@ class Agent():
         self.targetBaseStation = BaseStation 
         self.latest_loss = 0
         self.losses = []
+        self.q_values = []
         self.latest_queue = []
 
     def getCurrentState(self):
