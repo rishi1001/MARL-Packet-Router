@@ -1,0 +1,580 @@
+cpu
+.//config.ini
+read  <_io.TextIOWrapper name='./Maps/maps_5_3/map_5_3_1.txt' mode='r' encoding='UTF-8'>
+--------
+|  10  | -10- |
+--------
+|  0  |  10  |
+--------
+|  0  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [10, 0]
+TTL :  49
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  514.5933837890625
+Position :  (1, 1)
+States :  [10, 0]
+TTL :  49
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  517.7688598632812
+--------
+|  9  | -10- |
+--------
+|  2  |  9  |
+--------
+|  0  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [9, 2]
+TTL :  48
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  472.06390380859375
+Position :  (1, 0)
+States :  [2, 8, 0, 9]
+TTL :  48
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  406.429443359375
+Position :  (1, 1)
+States :  [9, 1]
+TTL :  48
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  510.525390625
+--------
+|  8  | -10- |
+--------
+|  3  |  8  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [8, 3]
+TTL :  47
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  431.0915832519531
+Position :  (1, 0)
+States :  [3, 7, 1, 8]
+TTL :  47
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  421.8294677734375
+Position :  (1, 1)
+States :  [8, 2]
+TTL :  47
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  471.33935546875
+Position :  (2, 0)
+States :  [1, 2, 0]
+TTL :  47
+Packet dropped
+Q-Value :  1685.9423828125
+--------
+|  7  | -10- |
+--------
+|  4  |  7  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [7, 4]
+TTL :  46
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  393.08514404296875
+Position :  (1, 0)
+States :  [4, 6, 1, 7]
+TTL :  46
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  458.2845458984375
+Position :  (1, 1)
+States :  [7, 3]
+TTL :  46
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  420.5764465332031
+Position :  (2, 0)
+States :  [1, 3, 0]
+TTL :  46
+Packet dropped
+Q-Value :  1692.6444091796875
+--------
+|  6  | -10- |
+--------
+|  5  |  6  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [6, 5]
+TTL :  45
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  357.3536071777344
+Position :  (1, 0)
+States :  [5, 5, 1, 6]
+TTL :  45
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  491.693603515625
+Position :  (1, 1)
+States :  [6, 4]
+TTL :  45
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  369.2739562988281
+Position :  (2, 0)
+States :  [1, 4, 0]
+TTL :  45
+Packet dropped
+Q-Value :  1642.4766845703125
+--------
+|  5  | -10- |
+--------
+|  6  |  5  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [5, 6]
+TTL :  44
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  337.2983093261719
+Position :  (1, 0)
+States :  [6, 4, 1, 5]
+TTL :  44
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  522.944580078125
+Position :  (1, 1)
+States :  [5, 5]
+TTL :  44
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  330.0577392578125
+Position :  (2, 0)
+States :  [1, 5, 0]
+TTL :  44
+Packet dropped
+Q-Value :  1543.1375732421875
+--------
+|  4  | -10- |
+--------
+|  7  |  4  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [4, 7]
+TTL :  43
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  328.91571044921875
+Position :  (1, 0)
+States :  [7, 3, 1, 4]
+TTL :  43
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  555.5751953125
+Position :  (1, 1)
+States :  [4, 6]
+TTL :  43
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  304.5869140625
+Position :  (2, 0)
+States :  [1, 6, 0]
+TTL :  43
+Packet dropped
+Q-Value :  1469.583251953125
+--------
+|  3  | -10- |
+--------
+|  8  |  3  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [3, 8]
+TTL :  42
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  327.2434997558594
+Position :  (1, 0)
+States :  [8, 2, 1, 3]
+TTL :  42
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  593.392578125
+Position :  (1, 1)
+States :  [3, 7]
+TTL :  42
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  282.76861572265625
+Position :  (2, 0)
+States :  [1, 7, 0]
+TTL :  42
+Packet dropped
+Q-Value :  1407.1297607421875
+--------
+|  2  | -10- |
+--------
+|  9  |  2  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [2, 9]
+TTL :  41
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  329.8412780761719
+Position :  (1, 0)
+States :  [9, 1, 1, 2]
+TTL :  41
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  636.308349609375
+Position :  (1, 1)
+States :  [2, 8]
+TTL :  41
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  264.31060791015625
+Position :  (2, 0)
+States :  [1, 8, 0]
+TTL :  41
+Packet dropped
+Q-Value :  1341.70263671875
+--------
+|  1  | -10- |
+--------
+|  10  |  1  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (0, 0)
+States :  [1, 10]
+TTL :  40
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  333.194091796875
+Position :  (1, 0)
+States :  [10, 0, 1, 1]
+TTL :  40
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  681.5751953125
+Position :  (1, 1)
+States :  [1, 9]
+TTL :  40
+Packet forwarded to neighbour :  (1, 0)
+Q-Value :  247.27871704101562
+Position :  (2, 0)
+States :  [1, 9, 0]
+TTL :  40
+Packet dropped
+Q-Value :  1295.0533447265625
+--------
+|  0  | -10- |
+--------
+|  11  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [11, 0, 1, 0]
+TTL :  39
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  748.449951171875
+Position :  (2, 0)
+States :  [1, 10, 0]
+TTL :  39
+Packet dropped
+Q-Value :  1257.8624267578125
+--------
+|  0  | -10- |
+--------
+|  10  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [10, 0, 1, 0]
+TTL :  38
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  711.3404541015625
+Position :  (2, 0)
+States :  [1, 9, 0]
+TTL :  38
+Packet dropped
+Q-Value :  1295.0533447265625
+--------
+|  0  | -10- |
+--------
+|  9  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [9, 0, 1, 0]
+TTL :  37
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  674.01611328125
+Position :  (2, 0)
+States :  [1, 8, 0]
+TTL :  37
+Packet dropped
+Q-Value :  1341.70263671875
+--------
+|  0  | -10- |
+--------
+|  8  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [8, 0, 1, 0]
+TTL :  36
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  637.275390625
+Position :  (2, 0)
+States :  [1, 7, 0]
+TTL :  36
+Packet dropped
+Q-Value :  1407.1297607421875
+--------
+|  0  | -10- |
+--------
+|  7  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [7, 0, 1, 0]
+TTL :  35
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  602.0703125
+Position :  (2, 0)
+States :  [1, 6, 0]
+TTL :  35
+Packet dropped
+Q-Value :  1469.583251953125
+--------
+|  0  | -10- |
+--------
+|  6  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [6, 0, 1, 0]
+TTL :  34
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  568.7606201171875
+Position :  (2, 0)
+States :  [1, 5, 0]
+TTL :  34
+Packet dropped
+Q-Value :  1543.1375732421875
+--------
+|  0  | -10- |
+--------
+|  5  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [5, 0, 1, 0]
+TTL :  33
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  536.72265625
+Position :  (2, 0)
+States :  [1, 4, 0]
+TTL :  33
+Packet dropped
+Q-Value :  1642.4766845703125
+--------
+|  0  | -10- |
+--------
+|  4  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [4, 0, 1, 0]
+TTL :  32
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  504.945556640625
+Position :  (2, 0)
+States :  [1, 3, 0]
+TTL :  32
+Packet dropped
+Q-Value :  1692.6444091796875
+--------
+|  0  | -10- |
+--------
+|  3  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [3, 0, 1, 0]
+TTL :  31
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  471.6910400390625
+Position :  (2, 0)
+States :  [1, 2, 0]
+TTL :  31
+Packet dropped
+Q-Value :  1685.9423828125
+--------
+|  0  | -10- |
+--------
+|  2  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [2, 0, 1, 0]
+TTL :  30
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  435.911865234375
+Position :  (2, 0)
+States :  [1, 1, 0]
+TTL :  30
+Packet dropped
+Q-Value :  1685.3856201171875
+--------
+|  0  | -10- |
+--------
+|  1  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (1, 0)
+States :  [1, 0, 1, 0]
+TTL :  29
+Packet forwarded to neighbour :  (2, 0)
+Q-Value :  379.5960693359375
+Position :  (2, 0)
+States :  [1, 0, 0]
+TTL :  29
+Packet dropped
+Q-Value :  1680.0467529296875
+--------
+|  0  | -10- |
+--------
+|  0  |  0  |
+--------
+|  1  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Position :  (2, 0)
+States :  [1, 0, 0]
+TTL :  28
+Packet dropped
+Q-Value :  1680.0467529296875
+--------
+|  0  | -10- |
+--------
+|  0  |  0  |
+--------
+|  0  | -10- |
+--------
+|  0  |  0  |
+--------
+| |0| |  0  |
+--------
+
+Mean ttl of all packets received by base station:  -1

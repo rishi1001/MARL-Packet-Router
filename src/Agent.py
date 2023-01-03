@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 configur = ConfigParser()
 import builtins
 configur.read(builtins.current_filename)
+from matplotlib import pyplot as plt
 
 #configur.read('config.ini')
 maxTtl = int(configur.get('packet','maxTtl')) 
@@ -18,6 +19,8 @@ ttl_zero_reward = int(configur.get('reward','ttl_zero_reward'))
 agent_to_agent_scale = float(configur.get('reward','agent_to_agent_scale'))
 scaling_type = configur.get('scaling_factor','type')
 include_distance = configur.getboolean('reward','include_distance')
+
+
 
 # class agent
 class Agent():
@@ -34,6 +37,7 @@ class Agent():
         self.losses = []
         self.q_values = []
         self.latest_queue = []
+        self.q_values = []
 
     def getCurrentState(self):
         """
@@ -140,6 +144,8 @@ class Agent():
         
         nextAction = self.nextAction(state)                ## from dqn
 
+        self.q_values.append(self.dqn_object.getQValue(state))
+
         if not train:
             print("Position : ",self.getPosition())
             print("States : ", state)
@@ -149,6 +155,9 @@ class Agent():
             else:
                 print("Packet forwarded to neighbour : ",self.neighbours[nextAction].getPosition())
             print("Q-Value : ", self.dqn_object.getQValue(state))
+            plt.plot(self.q_values)
+            plt.savefig(f'./q_{self.position}.png')
+            plt.close()
 
         nextState = self.getCurrentState()
         if topPacket.get_ttl() <= 0:

@@ -112,7 +112,7 @@ def train(foldername,graphics=False):
             agent.dqn_object.updateEpsilon()
             agent.saveLoss()
             # print("Loss :", agent.latest_loss)
-        print("Episode Number:",episode,"Packet reached:",BaseStation_obj.packetRecv)
+        # print("Episode Number:",episode,"Packet reached:",BaseStation_obj.packetRecv)
         # print("Packet reached:",BaseStation_obj.packetRecv)
         map_.resetAll()             # make queues empty for agents, Recv Packets for BS = 0
 

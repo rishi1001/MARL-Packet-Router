@@ -153,7 +153,7 @@ class DQNAgent:
         q_pred = self.policy_net.forward(states).gather(1, actions.view(-1, 1)) 
         
         #calculate target q-values, such that yj = rj + q(s', a'), but if current state is a terminal state, then yj = rj
-        q_target = self.target_net.forward(next_states).max(dim=1).values # because max returns data structure with values and indices
+        q_target = self.policy_net.forward(next_states).max(dim=1).values # because max returns data structure with values and indices
         #q_target = self.policy_net.forward(next_states).max(dim=1).values # because max returns data structure with values and indices
         # q_target[dones] = 0.0 # setting Q(s',a') to 0 when the current state is a terminal state
         y_j = rewards + (self.discount * q_target)
@@ -221,7 +221,33 @@ class DQNAgent:
 
         with torch.no_grad():
             # TODO policy_net or target_net?
-            q_values = self.target_net.forward(state)
+            q_values = self.policy_net.forward(state)
+
+        max_q_value = float(torch.max(q_values, dim=1)[0])
+
+        return max_q_value
+
+    def getPolicyQValue(self, state):
+        """
+        Function to return the Q-value for the given state(currently returning the MAX)
+
+        Parameters
+        ---
+        state: vector or tensor
+            The current state of the environment as observed by the agent
+
+        Returns
+        ---
+        q_values: tensor
+            The Q-values for the given state
+        """
+
+        if not torch.is_tensor(state):
+            state = torch.tensor([state], dtype=torch.float32).to(self.device)
+
+        with torch.no_grad():
+            # TODO policy_net or target_net?
+            q_values = self.policy_net.forward(state)
 
         max_q_value = float(torch.max(q_values, dim=1)[0])
 

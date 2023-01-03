@@ -26,14 +26,19 @@ class DQNNet(nn.Module):
         super(DQNNet, self).__init__()
         self.dense1 = nn.Linear(input_size, layer1)
         self.dense2 = nn.Linear(layer1, layer2)
-        self.dense3 = nn.Linear(layer2, output_size)
+        self.V = nn.Linear(layer2, 1)
+        self.A = nn.Linear(layer2, output_size)
+        # self.dense3 = nn.Linear(layer2, output_size)
 
         self.optimizer = optim.Adam(self.parameters(), lr=lr)
 
     def forward(self, x):
         x = F.relu(self.dense1(x))
         x = F.relu(self.dense2(x))
-        x = self.dense3(x)
+        V = F.relu(self.V(x))
+        A = F.relu(self.A(x))
+        x = V + (A - torch.mean(A,1,True))
+        # x = self.dense3(x)
         return x
 
     def saveModel(self, filename):

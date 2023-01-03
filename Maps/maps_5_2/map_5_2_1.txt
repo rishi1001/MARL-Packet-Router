@@ -1,0 +1,5 @@
+X I
+A A 
+X A 
+A A
+B A
