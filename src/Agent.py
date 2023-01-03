@@ -2,7 +2,7 @@ from src.DQN.dqn_agent import DQNAgent
 import random
 from .utils import getManhattanDistance
 import math
-
+from matplotlib import pyplot as plt
 from configparser import ConfigParser
   
 configur = ConfigParser()
@@ -32,6 +32,7 @@ class Agent():
         self.latest_loss = 0
         self.losses = []
         self.latest_queue = []
+        self.q_values = []
 
     def getCurrentState(self):
         """
@@ -137,6 +138,7 @@ class Agent():
 
         
         nextAction = self.nextAction(state)                ## from dqn
+        self.q_values.append(self.dqn_object.getQValue(state))
 
         if not train:
             print("Position : ",self.getPosition())
@@ -147,6 +149,9 @@ class Agent():
             else:
                 print("Packet forwarded to neighbour : ",self.neighbours[nextAction].getPosition())
             print("Q-Value : ", self.dqn_object.getQValue(state))
+            plt.plot(self.q_values)
+            plt.savefig(f'./agent_at_{self.position}.png')
+            plt.close()
 
         nextState = self.getCurrentState()
         if topPacket.get_ttl() <= 0:
